@@ -1,0 +1,8 @@
+#!/bin/sh
+while true; do
+    ./bulld 0 55988
+    echo "Bulld gestorben. Restartet in 3 Sekunden..."
+    sleep 3
+done
+
+

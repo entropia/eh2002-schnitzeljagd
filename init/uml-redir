@@ -1,0 +1,20 @@
+#!/bin/sh
+case "$1" in
+  start)
+    echo "Starte uml-redir..."
+    read laddr < config/polizei/ip
+    read lport < config/polizei/bullencode/port
+    
+    # uml ip und port auf dem bulld läuft
+    caddr=192.168.0.2
+    cport=55988
+    redir  --laddr=$laddr --lport=$lport --caddr=$caddr --cport=$cport --bind_addr=192.168.0.1 &
+    ;;
+  stop)
+    echo "Beende uml-redir..."
+    killall redir 
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac

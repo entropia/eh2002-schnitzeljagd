@@ -1,0 +1,97 @@
+-------------------------------------------------------------------------------
+The Noffle News Server
+-------------------------------------------------------------------------------
+
+Features
+--------
+
+Noffle is a Usenet news server optimized for few users and low speed dial-up
+connections to the Internet. It acts as a server to news clients running on
+the local host, but gets its news feed by acting as a client to a remote
+server. Noffle is written for the GNU/Linux operating system and freely
+available under the terms of the GPL. See COPYING for details.
+
+While Online:
+
+ * Any newsgroup can be read, selected articles are fetched immediately from
+   the remote server.
+
+While Offline:
+
+ * Allows reading news offline with many news clients, even if they do not
+   support offline reading by themselves.
+
+ * Groups can be retrieved in overview, full or thread mode.
+    * In overview mode, opened articles that have not been completely
+      downloaded yet are marked for download. Noffle generates a pseudo
+      article body telling the human about this.
+    * In full mode, complete articles are fetched at once.
+    * Thread mode is like overview mode, but opening an article marks the whole
+      thread for download (all later articles for some time that are
+      referencing the original article).
+
+ * The news feed is invoked automatically next online time by calling Noffle
+   in the ip-up script.
+
+ * Groups can be put on the fetch list via the 'noffle' command or
+   automatically when someone tries to read them. Groups can be automatically
+   removed from the fetch list, when nobody accesses them for some time.
+
+ * Noffle also offers limited support for local groups. Articles posted in
+   local groups appear in the news database for those groups immediately,
+   and are expired in the same way as other articles.
+
+
+Compatibility with News Clients
+-------------------------------
+
+See docs/NOTES for information about news client software.
+
+
+Getting Noffle
+--------------
+
+The current stable release is:      1.0
+
+The current development release is: none
+
+The Noffle homepage is at:
+
+    http://noffle.sourceforge.net/
+
+Official releases can be downloaded at the File Releases section
+of the Noffle project page:
+
+    http://sourceforge.net/project/?group_id=1044 
+
+The latest development snapshot is available via CVS at:
+
+    http://sourceforge.net/cvs/?group_id=1044
+
+
+Installation
+------------
+
+Read INSTALL for information about compiling and installing Noffle.
+
+
+Documentation
+-------------
+
+Read the files in the subdirectory docs/ and the manual pages
+noffle(1) and noffle.conf(5) for more information on Noffle.
+
+There is a noffle-users mailing list at SourceForge:
+
+    http://sourceforge.net/mail/?group_id=1044
+
+Bugs should be submitted here:
+
+    http://sourceforge.net/bugs/?group_id=1044
+
+
+Acknowledgements
+----------------
+
+The wildmat newsgroup pattern matching software used by Noffle was developed
+by Rich Salz, and is distributed with INN v2.2. 

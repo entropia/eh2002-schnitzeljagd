@@ -1,0 +1,612 @@
+Fri Jun 15 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+* NEWS,configure,configure.in: prepare for release 1.0.1
+	
+Mon May 14 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+* src/client.c: fix bug in last changes that made Client_connect
+  fail every time
+	
+Sat May 12 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+* src/client.c: add testing for client.connected to some
+  functions and let them return immediately FALSE if not true.
+
+Thu May 10 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+* src/server.c: fix bug: use correct STAT_NO_SUCH_ID instead of
+  STAT_NO_SUCH_NUMB for unknown articles requested by message ID.
+* src/client.c: fix bug: after a breakdown because of a timeout
+  subsequent commands could have succeeded, but with
+  server responses to previous commands.
+	
+Tue May 01 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+* src/server.c: do not search all groups if group does not
+  exist and contains no wildcards
+
+Tue Mar 13 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+ * src/client.c,NEWS: Fix bug. Server name was not yet initialized
+   if server required authentication at connect time.
+
+Wed Feb 28 2001 Markus Enzenberger <me@markus-enzenberger.de>
+
+ * src/database.c: fix missing argument to snprintf
+
+Tue Jan 30 2001 Jim Hague <jim.hague@acm.org)
+ * README,INSTALL: A couple of minor updates to reflect the release of
+   1.0.
+	
+Fri Dec 22 2000 Markus Enzenberger <me@markus-enzenberger.de>
+
+ * configure.in: Change VERSION to 1.0 (and to 1.0develop after tagging),
+   remove -DDEBUG from compiler options if enable-debug is not yes,
+   because it turns on extensive logging.
+
+ * TODO: Note that only bugfixes should be done in this CVS branch.
+
+ * NEWS: Add section about release 1.0
+
+Fri Dec 22 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * AUTHORS: add Matija Nalis
+
+Sun Dec 10 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/client.c: Extract common code from putCmd and putCmdNoFlush,
+   reset client.lastStat when sending new command
+
+Thu Oxt 26 21:33:45 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/protocol.c: Fix bug in Prt_getLn if we should read a line
+   starting with '\0' - according to the leafnode mailing list,
+   this has been seen in the wild.
+	
+Sun Oct 15 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * acconfig.h,config.h.in,configure.in,src/Makefile.in,src/fetch.c:
+   Applied patch by Paul Slootman: using the mail program is
+   replaced by sendmail (SENDMAILPROG variable).
+
+Sat Sep 02 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * NEWS,src/client.c,src/protocol.c,src/protocol.h,src/server.c:
+   Added timeout to Prt_getLn to avoid Noffle hanging if the
+   connection breaks down during a fetch.
+
+Sun Sep 10 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * docs/NOTES: Added section about Gravity (thanks to
+   Tomislav Filipcic <tfilip@jagor.srce.hr>).
+
+Sat Sep 02 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/client.c: use LIST instead of LIST ACTIVE, since it
+   works with more news-servers.
+
+Wed Aug 23 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/server.c: do no longer always replace invalid message-IDs.
+
+Fri Aug 11 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/noffle.c: Minor bug fix. Noffle no longer tries to unsubscribe groups
+   that are already unsubscribed.
+
+Wed Jul 26 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * Released version 1.0pre7
+
+Tue Jul 25 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/client.c: Added GMT to NEWGROUPS command.
+
+Sat Jul 22 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * doc/NOTES: Removed section about GNUS hanging. It was caused
+   by the "select" bug in Noffle.
+
+Sat Jul 22 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/server.c, src/protocol.c: Fixed a critical bug. "select" cannot
+   be used with buffered stdio. This caused Noffle to hang with some
+   readers (like tin).
+	
+Mon Jul 17 11:19:06 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/client.h,src/client.c,src/noffle.c,docs/noffle.1: Remove
+   '--query times' option. Creation time should always be time of
+   creation on local server.
+ * src/group.h,src/group.c: Remove Grp_setCreated().
+	
+Fri Jul 14 15:20:14 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/client.c,src/fetch.c,src/noffle.c: The groupinfo.lastupdate file
+   was being used to (a) indicate the time of the last addition to group
+   information, and (b) the last access to a server. With more than one
+   server specified, (a) meant the groupinfo.lastupdate file was updated
+   when new groups on the server (or a new fetch of the server group list)
+   were processed. When server 2 came to use the file for (b) (to determine
+   the time to specify when sending the NEWGROUPS command), the time was
+   already set by server 1 and so server 2 would not see new groups. Fix
+   this by creating lastupdate.<server> files for use (b).
+ * src/client.c,src/group.c: Set initial group creation time to the current
+   time. Previously it was set to 0, so new groups were not reported to a
+   NEWGROUPS request unless 'noffle --query times' was run - even then,
+   local groups would never be reported. Setting the creation time to the
+   creation time on the local server makes things work properly. NB - the
+   group creation time should always be reported as the creation time on
+   the server; must fix this and remove '--query times'. This change will
+   require 'noffle --query groups' to be re-run to create the server
+   lastupdate.<server> files.
+
+Tue Jul 12 12:54:01 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/util.c: Fix Utl_rfc822Date to work properly in all timezones.
+
+Mon Jul 03 12:05:50 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/database.h,src/database.c,src/server.c: Fix 'XHDR <msgId>' and
+   add 'XPAT <msgId>'. 'XHDR <msgId>' previously only worked if
+   msgId was a message in the current group. My brain was really
+   in neutral when I did that.
+
+Sun Jun 25 09:45:50 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/protocol.c: Another go at Prt_genMsgId. Yesterday I seeded the
+   random element of the generated message id from the time; but what
+   if two Noffle processes start in the same second? So switch to seeding
+   with tv_usec instead.
+	
+Sat Jun 24 20:45:52 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/noffle.c: Set last accessed time on group when subscribed
+   from command line.
+ * src/post.c: Bugfix - Post_close on duplicate article post.
+ * src/server.c,docs/noffle.1: Redo posting. Check can post to all
+   known groups before posting to any, permit post to moderated local
+   groups if 'Approved:' header found, post to all servers for external
+   groups instead of just first server.
+  * src/protocol.c: Fix bug in Prt_genMsgId that caused duplicate
+    message IDs to be generated for posts in the same second.
+
+Mon Jun 19 22:43:38 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/util.c, src/database.c: Fix header line reading bug.
+
+Sat Jun 11 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * Prepare for version 1.0pre6
+ * configure.in: Removed warning options for warnings that are
+   unavoidable with libgdbm
+
+Sat Jun 03 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * docs/NOTES: removed the whole section about the mail2news gateway.
+   It doesn't really work, because procmail forks for each mail and
+   changing the posting allowed status is not atomic.
+
+Thu Jun 01 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * docs/NOTES: Added section about "replace-messageid" option in
+   the Mail-News-Gateway chapter.
+
+Mon May 29 19:12:47 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/client.c: Fix spelling mistake in comment.
+ * docs/noffle.1: Add a little bit more to the description of --online.
+	
+Mon May 29 18:48:39 CEST 2000 Uwe Hermann <uh1763@bingo-ev.de>
+
+ * configure, configure.in: Changed the --enable-debug option of configure.
+   It now accepts the parameters 'no', 'min' and 'yes', i.e. no compiler-
+   warnings, minimum compiler-warnings and maximum compiler-warnings.
+   Default is 'min'. Stable releases should have 'no' as default, IHMO.
+
+ * NEWS: Update.
+
+Fri May 26 11:38:27 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * docs/NOTES: Added notes on knode.
+ * src/client.c: Corrected comment.
+	
+Sat May 20 22:17:48 CEST 2000 Uwe Hermann <uh1763@bingo-ev.de>
+
+ * docs/Makefile.am, docs/Makefile.in: Added INTERNALS to docs/Makefile.am, so
+   that it is included in the distribution by 'make distcheck'.
+
+ * docs/NOTES: Added info about pan versions 0.7.6 and 0.8
+
+Sat May 20 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+ * src/noffle.c: always enable generation of core files.
+
+Fri May 19 14:02:44 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/content.c: Ensure if last article(s) in group are cancelled that
+   article numbers aren't re-used.
+ * src/util.c: Redo Utl_rfc822Date to not use strftime - this was potentially
+   wrong as it would only generate a conformant date string in
+   English locales.
+ * docs/INTERNALS: Move INTERNALS to docs/.
+
+Thu May 18 13:22:36 BST 2000  Jim Hague <jim.hague@acm.org>
+
+ * Recognise explicit posting statuses of 'y', 'n' and 'the rest'.
+   The latest IETF draft says you can have other statuses apart from
+   'm' (moderated group), and these should probably be treated in the
+   same way as 'm', i.e. forwarded to the external server to worry
+   about.
+	
+Wed May 17 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * README: Clean-up and update.
+ * docs/noffle.conf.5, src/configfile.h, src/server.c:
+   Disabled remove-msgid option.
+
+Sun May 14 16:51:24 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * docs/NOTES: Added notes on trn, xrn and knews.
+ * src/configfile.h, src.configfile.c, src/server.c, docs/noffle.conf.5:
+   Increment the article number of the gen info article in groups that
+   are not auto-subscribed each time the gen info article is read. The gen
+   info article thus remains unread at the start of every newsreading
+   session. This behaviour can be disabled by setting new config
+   setting 'info-always-unread' to 'no'. Default is 'yes'. This (I hope)
+   restores Markus's preferred behaviour.
+ * INTERNALS: Added file with some rough jottings on the internals of Noffle.
+   A work in (probably sporadic) progress.
+
+Sun May 14 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/fetch.c: Did some refactoring.
+
+Sat May 13 15:09:01 BST 2000 Jim Hague <jim.hague@acm.org>
+
+ * src/itemlist.c: Fixed stupid, Stupid, STUPID bug in Itl_next().
+   Redid itemlist code slightly to remove need to keep separators
+   string, at the cost of making it impossible to use '\1' as a
+   separator. I don't think this will be a problem.
+ * src/log.h, src/log.c, src/over.h, src/over.c: Adjusted consting
+   in Log_init and new_Over to remove compiler warnings.
+ * src/portable.h, src/server.c, src/client.c: Introduced UNUSED(x)
+   macro to indicate deliberately unused function parameters and
+   remove warnings.
+ * src/content.c: Preserve gen info in Cont_write() provided it is
+   followed by an article with the next number. Stops gen info article
+   vanishing instantly on reading when auto-subscribe is on, which
+   was sort-of confusing for users (why can't I read that again?)
+   and caused xrn to complain the NNTP server was broken.
+
+Sat May 13 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/client.c: Rewrote needsMark(): uses itemlist.h, more debugging output.
+ * src/server.c: Rewrote getTimesInSeconds(): arguments ar now int and
+   checked with assertions. Return value is time_t and must be checked
+   for (time_t)-1.
+
+Sat May 13 06:20:01 CEST 2000 Uwe Hermann <uh1763@bingo-ev.de>
+
+ * src/Makefile.am, src/Makefile.in: Added portable.h to the list of sources.
+   I forgot this in my last commit. Sorry.
+
+Fri May 12 2000 Markus Enzenberger <markus.enzenberger@t-online.de>
+
+ * src/client.c: add some intermediate variables for easier debugging
+   in needsMark(). It seems that thread mode is sometimes not working.
+ * src/client.c, src/content.c, src/dynamicstring.h, src/dynamicstring.c,
+   src/util.h, src/util.c, src/protocol.c:
+   Changed some variable types and used some casts to avoid compiler
+   warnings about signedness. In general, int should be used for parameters
+   for allowing a signedness assertion in the function.
+   (see J.Lakos: Large-Scale C++ Software Design, section 9.2).
+ * src/client.c, src/database.c, src/database.h, src/fetch.c, src/fetchlist.c,
+   src/fetchlist.h, src/group.c, src/group.h, src/noffle.c, src/server.c
+   src/server.h:
+   Renamed some variables, because they caused compiler warnings because
+   of shadowing global variables from system include files
+   (index, stat, serv).
+ * src/fetchlist.c:
+   Avoid compiler warning because of cast from const to non-const.
+ * src/post.c, src/server.c:
+   Avoid compiler warnings about incomplete initializer blocks.
+	
+Fri May 12 10:19:56 CEST 2000  Uwe Hermann <uh1763@bingo-ev.de>
+
+ * configure, configure.in: Only add all those compiler-switches
+   like -ansi, -pedantic etc. if we use gcc. Other c-compilers are unlikely
+   to have those switches.
+
+
+Wed May 10 00:25:44 CEST 2000  Uwe Hermann <uh1763@bingo-ev.de>
+
+ * src/client.c, src/configfile.c, src/content.c, src/control.c,
+   src/database.c, src/dynamicstring.c, src/fetch.c, src/fetchlist.c,
+   src/group.c, src/itemlist.c, src/lock.c, src/log.c, src/noffle.c,
+   src/online.c, src/outgoing.c, src/over.c, src/post.c, src/protocol.c,
+   src/pseudo.c, src/request.c, src/server.c, src/util.c:
+   Added portable.h #include.
+
+ * src/client.h, src/database.h, src/fetch.c, src/group.h, src/lock.c,
+   src/outgoing.c, src/over.c, src/over.h, src/pseudo.c, src/server.c,
+   src/util.c, src/util.h: Added some #ifdefs to correctly include either
+   time.h or sys/time.h or both, depending on which are found.
+
+ * src/noffle.c: Changed the return-type of the signal-handlers bugReport()
+   and logSignal() to RETSIGTYPE, which is either void or int, depending on
+   the system you compile on (autoconf #defines the RETSIGTYPE).
+
+ * src/portable.h: Added file. This #defines some macros, so the code uses
+   __snprintf() and __vsnprintf if snprintf and vsnprintf aren't available.
+   This is the case on SunOS, for example.
+
+
+Sat May  6 12:25:39 BST 2000  Jim Hague <jim.hague@acm.org>
+
+ * src/server.c: Changed XOVER with no arg. to return info for current
+   article, not error.
+
+ * src/server.c, src/content.h, src/content.c: XHDR - added 'xref' to
+   headers recognised to keep trn happy, and recognise message ID argument.
+
+ * src/server.c, src/content.c: Ensure first/last from LIST ACTIVE and
+   GROUP agree (trn uses former). Tricky with pseudo gen info articles
+   around. Presence of these now only recorded in content and not
+   reflected in group first/last until proper article posted after
+   pseudo.
+
+ * src/client.c, NEWS: Reinstated starting article numbering from first
+   article number on server. Reasoning below is wrong except in exceptional
+   circumstances (e.g. join group, auto-subscribe, manual unsubscribe,
+   auto subscribe again, etc. to get > 2 Noffle info messages in group.
+   Bring reader up to date, remove & reinstall Noffle. Join group,
+   autosubscribe after more news arrives at server, reader thinks it has read
+   n articles it hasn't, where n is number of Noffle info messages in
+   group first time round - 2). Feature is generally useful, esp. in
+   development, so back in it goes.
+
+ * src/group.c: Forget cached group info when group database closed.
+	
+
+Sat May  6 01:31:04 CEST 2000  Uwe Hermann <uh1763@bingo-ev.de>
+
+ * Makefile.in, configure, configure.in, docs/Makefile.in, src/Makefile.in:
+   Added checks for the mail and sort programs. ./configure will abort if
+   they're not found.
+
+ * README: Removed the paragraph about news client software, as it's the same
+   as the one in docs/NOTES.
+
+ * TODO: Removed 'expiring by groups' and
+   'move some text from noffle.1 to noffle.conf.5'.
+
+ * docs/NOTES: Changed the text about -DDEBUG to explain one should use
+   './configure --enable-debug'.
+
+ * docs/noffle.1, docs/noffle.conf.5: Minor fixes. Added myself and Jim Hague
+   to the AUTHORS section :-)
+
+ * src/client.h, src/common.h, src/configfile.h, src/content.c, src/content.h,
+   src/control.c, src/control.h, src/database.h, src/dynamicstring.c,
+   src/dynamicstring.h, src/fetch.h, src/fetchlist.h, src/group.h,
+   src/itemlist.c, src/itemlist.h, src/lock.h, src/log.c, src/log.h,
+   src/noffle.c, src/online.h, src/outgoing.h, src/over.c, src/over.h,
+   src/post.h, src/protocol.h, src/pseudo.h, src/request.h, src/server.h,
+   src/util.c, src/util.h: Added the <config.h> include.
+
+ * src/content.c: Added missing include "content.h". Added a missing 'void'
+   in the declaration of clearCont().
+
+ * src/fetchlist.c: Casted fetchlist.size to (size_t) in a call to qsort(),
+   as qsort() expects a size_t. This removes a warning.
+
+ * src/noffle.c: Made doRequested() static. Added missing void to
+   enableCorefiles().
+
+ * src/log.c, src/protocol.c, src/online.c, src/pseudo.c: Added missing
+   includes.
+
+ * src/pseudo.c: Made genOv() and genPseudo() static.
+
+ * src/server.c: Added missing void to postArts(). Made touchArticle() static.
+
+ * src/util.c: Casted arguments of malloc() and memcpy() to size_t.
+
+ * src/dynamicstring.c, src/itemlist.c, src/over.c, src/request.c, src/util.c: 
+   Removed casting of the result of malloc(). This is not necessary and
+   can hide a missing include of <stdlib.h>.
+
+
+Fri May  5 23:39:52 CEST 2000  Uwe Hermann <uh1763@bingo-ev.de>
+
+ * client.c, client.h, common.h, config.c, config.h, content.c, content.h,
+   control.c, control.h, database.c, database.h, dynamicstring.c,
+   dynamicstring.h, fetch.c, fetch.h, fetchlist.c, fetchlist.h, group.c,
+   group.h, itemlist.c, itemlist.h, lock.c, lock.h, log.c, log.h, noffle.c,
+   online.c, online.h, outgoing.c, outgoing.h, over.c, over.h, post.c, post.h,
+   protocol.c, protocol.h, pseudo.c, pseudo.h, request.c, request.h, server.c,
+   server.h, util.c, util.h, wildmat.c, wildmat.h: Moved files to the
+   subdirectory src/
+
+ * Makefile.am, acconfig.h, configure.in, docs/Makefile.am, src/Makefile.am,
+   Makefile.in, aclocal.m4, config.h.in, configure, install-sh, missing,
+   mkinstalldirs, stamp-h.in, docs/Makefile.in, src/Makefile.in: Added files.
+   They are used by aclocal, autoheader, autoconf and automake.
+
+ * src/config.c, src/config.h: Renamed to configfile.c and configfile.h,
+   because configure will generate a config.h file itself.
+
+ * src/client.c, src/content.c, src/database.c, src/fetch.c, src/fetchlist.c,
+   src/group.c, src/lock.c, src/noffle.c, src/online.c, src/outgoing.c,
+   src/over.c, src/pseudo.c, src/request.c, src/server.c, src/util.c:
+   Changed '#include "config.h"' to '#include "configfile.h"'.
+
+ * src/client.c, src/content.c, src/database.c, src/fetch.c, src/fetchlist.c,
+   src/group.c, src/lock.c, src/online.c, src/outgoing.c, src/post.c,
+   src/protocol.c, src/request.c, src/server.c: Files now #include <config.h>.
+   Added missing <stdio.h>. This removes the warnings about snprintf() not
+   being declared.
+
+ * Makefile: Removed. This is now generated by configure.
+
+
+Fri May  5 22:24:37 CEST 2000  Uwe Hermann <uh1763@bingo-ev.de>
+
+ * AUTHORS.html, CHANGELOG.html, COPYING.html, README.html, FAQ.html,
+   NOTES.html, INSTALL.html: Removed files.
+ 
+ * AUTHORS, COPYING, ChangeLog, README, INSTALL, NEWS, docs/FAQ, docs/NOTES:
+   Added files.
+
+ * TODO.TXT: Renamed to TODO. Slightly changed formatting.
+
+ * README: Reformatted the file. Added info about CVS. Added a pointer to
+   the file INSTALL.
+
+ * noffle.1, noffle.conf.5: Moved to docs/
+
+ * LSM.TXT: Moved to docs/noffle.lsm. Small fix.
+
+ * INSTALL: Adapted to autoconf build-system. A few minor fixes.
+
+
+-------------------------------------------------------------------------------
+
+1.0pre6pre
+
+     * Forget cached group info when group database closed.
+     * Added list of 'forbidden' newsgroup specs., as defined in draft IETF
+       Newsgroup Format (C.Lindsey), tracked to replace RFC1036. This defines
+       newsgroup names that should only be used for server-local groups and
+       server pseudo-groups (e.g. INN's to.*, cancel, cancel.*, junk). These
+       are now intercepted when querying server groups and ignored. Group names
+       omitted are any single component names, any 'control.*', 'to' or
+       'to.*',and any with a component 'all' or 'ctl'.
+       Note these restrictions do not apply to local group names.
+     * Fixed problem with article numbering if the overview file empties,
+       e.g. due to all articles in a very low volume group expiring. This
+       would cause article numbers to be set back to 1 when a new article
+       arrives.
+     * Changed %i to %d in sscanfs everywhere. INN often (as it is entitled
+       to do) has leading zeros on numbers. %i interprets these as octal
+       numbers. Also changed %i to %d in printfs, for no good reason.
+     * New groups now always start numbering at article 1. Previously article
+       numbering would start with the first held remote article number, in an
+       attempt to avoid newsreaders noticing if noffle is deleted and
+       reinstalled. Given Noffle may well not collect the first held article
+       anyway - it only will if the default number of articles to retrieve on
+       a first connect is big enough - and the fact that Noffle's pseudo
+       articles make it impossible to keep local article numbers in lock-step
+       with the server, there is the chance this scheme would just cause
+       readers to miss new articles.
+     * Record newsgroup posting status. Enforce it at posting time.
+       Added --modify to change newsgroup descriptions for all groups and
+       posting status for local groups.
+     * Added group deletion.
+     * Added message cancellation - from command line or by control message.
+       Note command line only cancels locally - it can't be used to cancel a
+       message that has already gone offsite. A control messages cancels
+       locally if possible; it is only propaged offsite if the target is in a
+       non-local group and has itself already gone offsite.
+     * Added wildmat code taken from INN - ensure Noffle wildcarding is
+       exactly to spec.
+     * Added group-specific expire times.
+     * Noffle now sends a "MODE READER" command after connecting to the
+       remote server. INN needs this before it will permit POST.
+     * Applied patch from Jim Hague: support for local groups / new command
+       line options --create and --cancel.
+     * Changed output of 'noffle -a all' to standard mailbox format,
+       so that tools like grepmail work.
+
+Version 1.0pre5
+
+     * Core files are always enabled when running as server and debugging
+       symbols are always in the executable.
+     * Use GDBM_FAST flag for hash files.
+     * Fixed a bug in online mode with servers that need authentication.
+     * Minor changes and improvements
+
+Version 1.0pre4
+
+     * Fixed a bug that broke cross-posting of articles
+     * Fixed a bug that truncated headers of posted articles.
+     * Long overview header lines are now split into multiple lines in
+       response to HEAD or ARTICLE commands.
+     * Fixed a bug that caused a crash sometimes when updating the
+       requested article list after releasing/regetting the global lock
+     * Server is now allowed to generate core files on crash (in spool
+       directory) if compiled with -DDEBUG option
+     * Opening an article additionally marks all references as
+       interesting, so more articles are fetched in thread mode, if one
+       article of a thread was opened.
+     * New config option "connect-timeout"
+     * Minor improvements and bug-fixes
+
+Version 1.0pre3
+
+     * Added XPAT command. Not full syntax, but enough for making slrn's
+       thread reconstruction work
+     * Storing of requested message-ids completely rewritten (thanks to
+       Volker Wysk for the patch). Much more efficient now. Bug removed
+       that broke requesting articles with message-IDs containing a
+       slash. Added --requested option.
+     * When fetching requested articles, do not send more than 20 ARTICLE
+       commands at once, before parsing the server response.
+     * Minor bug fixes and improvements.
+
+Version 1.0pre2
+
+     * Added RPM_BUILD_ROOT variable to Makefile (useful for creating RPM
+       source packages)
+     * Removed terrible bug that truncated article body after releasing
+       and re-getting global lock
+
+Version 1.0pre1
+
+     * needs complete re-installing, some formats have changed
+     * Support for multiple remote servers
+     * Faster download when fetching news, because articles are prepared
+       in database while parsing response to XOVER and all ARTICLE
+       commands are sent at once
+     * Bug removed that made authetication only work with lower-case
+       passwords
+     * Other small bug fixes and improvements
+
+Version 0.19
+
+     * Fix broken full mode
+     * Fix cutting of articles after line beginning with '.'
+     * Other bug fixes
+     * LIST commands can have pattern argument now
+     * initial-fetch option removed (same as max-fetch now)
+
+Version 0.18
+
+     * needs complete re-installing, most file format have changed
+     * Group database uses gdbm, databases moved to
+       /var/spool/noffle/data
+     * Most config options changed their names, some do not longer exists
+     * New fetch mode "thread" added
+     * Different --fetch invocations replaced by single option
+     * Meaning of "--database" option changed, "--article" option added
+     * Failed postings are now returned to sender by "mail" command
+     * Expire uses last access time
+     * Auto-subscribe option only subscribes groups now, if an article
+       body is opened (no longer if group is selected).
+     * Improve posting at German T-Online provider: rename X-Sender
+       header, Reply-To header is added, if missing (T-Online overwrites
+       From headers), allow to remove Message-ID as a config option.
+     * Doc files are now copied to $(PREFIX)/doc/noffle
+     * Y2K compliance of NEWGROUPS command
+     * Various bug fixes (thanks to all users helping with bug reports)
+     * Various changes for tuning and improvement
+
+Version 0.17
+
+     * Bug removed that caused NOFFLE to exceed the allowed maximum number of
+       open files on longer sessions.
+
+Version 0.16
+
+     * Noffle generates Message-ID if a message received for posting has none.
+

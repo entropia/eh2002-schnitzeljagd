@@ -1,0 +1,18 @@
+#!/bin/sh
+case "$1" in
+  start)
+    echo "Starte p2p..."
+    read saddr < config/prison/ip
+    read sport < config/prison/p2p/source-port
+    read taddr < config/prison/p2p/target-addr
+    read tport < config/prison/p2p/target-port
+    ./p2p $saddr $sport $taddr $tport &
+    ;;
+  stop)
+    echo "Beende p2p..."
+    killall p2p 
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac

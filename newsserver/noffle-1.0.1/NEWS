@@ -1,0 +1,88 @@
+-------------------------------------------------------------------------------
+NOFFLE NEWS -- User visible changes
+-------------------------------------------------------------------------------
+
+1.0.1
+-----
+
+ * Released on 15 Jun 2001
+ * Fixed bug that broke authentication if the server required it at
+   connect time.
+ * Fix bug that made Noffle to get server responses to wrong commands,
+   after a read timeout occurred and could lead to mixed up group
+   contents and messages.
+ * minor optimizations and fixes
+
+1.0:
+----
+
+ * Released on 27 Jan 2001.
+ * In the 1.0pre8 release, debug logging was enabled in the standard
+   settings, which slowed down Noffle considerably. it is disabled by
+   default now.
+
+1.0pre8:
+--------
+
+ * Noffle no longer hangs if the connection breaks down during a fetch.
+ * SENDMAILPROG is used instead of mail for returning failed postings.
+
+1.0pre7:
+--------
+
+ * Fixed a bug that caused noffle to hang with some readers (like tin/Gnus).
+ * Fix bug with time of last server access for setups with multiple servers.
+   You must re-run 'noffle --query groups'.
+ * Remove '--query times'.
+ * Fix date printing bug. Now works in all(?) timezones.
+ * Fix bug with 'XHDR <msgId>'. Add 'XPAT <msgId>'.
+ * Allow post to local moderated group if 'Approved:' header present.
+
+1.0pre6
+-------
+11 June 2000
+
+ * added ./configure-option '--enable-debug=[no/min/yes]'
+ * Add 'info-always-unread' option.
+ * Add support for XOVER with no argument. Also XHDR with message ID
+   argument and XHDR when 'xref' requested (trn needs this).
+ * Forget cached group info when group database closed.
+ * Added list of 'forbidden' newsgroup specs., as defined in draft IETF
+   Newsgroup Format (C.Lindsey), tracked to replace RFC1036. This defines
+   newsgroup names that should only be used for server-local groups and
+   server pseudo-groups (e.g. INN's to.*, cancel, cancel.*, junk). These
+   are now intercepted when querying server groups and ignored. Group names
+   omitted are any single component names, any 'control.*', 'to' or
+   'to.*',and any with a component 'all' or 'ctl'.
+   Note these restrictions do not apply to local group names.
+ * Fixed problem with article numbering if the overview file empties,
+   e.g. due to all articles in a very low volume group expiring. This
+   would cause article numbers to be set back to 1 when a new article
+   arrives.
+ * Record newsgroup posting status. Enforce it at posting time.
+   Added --modify to change newsgroup descriptions for all groups and
+   posting status for local groups.
+ * Added group deletion.
+ * Added message cancellation - from command line or by control message.
+   Note command line only cancels locally - it can't be used to cancel a
+   message that has already gone offsite. A control messages cancels
+   locally if possible; it is only propaged offsite if the target is in a
+   non-local group and has itself already gone offsite.
+ * Added wildmat code taken from INN - ensure Noffle wildcarding is
+   exactly to spec.
+ * Added group-specific expire times.
+ * Noffle now sends a "MODE READER" command after connecting to the
+   remote server. INN needs this before it will permit POST.
+ * added support for local groups
+ * new command line options --create and --cancel
+ * Changed output of 'noffle -a all' to standard mailbox format,
+   so that tools like grepmail work.
+ * documentation updates
+ * NOFFLE now uses the autoconf/automake build-system
+
+
+0.16 - 1.0pre6pre
+-----------------
+
+ * See ChangeLog
+

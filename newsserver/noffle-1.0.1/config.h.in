@@ -1,0 +1,203 @@
+/* config.h.in.  Generated automatically from configure.in by autoheader.  */
+/* For use by autoheader */
+
+#ifndef CONFIG_H
+#define CONFIG_H    /* To stop multiple inclusions. */
+
+/* The NOFFLE config-file */
+#undef CONFIGFILE
+
+/* The default NOFFLE spool-directory */
+#undef SPOOLDIR
+
+/* Enable GNU extensions. */
+#undef _GNU_SOURCE
+
+/* Define to 'unsigned int' if not already defined by the system. */
+#undef socklen_t
+
+/* path to sendmail binary */
+#undef SENDMAILPROG
+
+
+/* autoheader generated things inserted here. */
+
+/* Define if you have the <dirent.h> header file, and it defines `DIR'. */
+#undef HAVE_DIRENT_H
+
+/* Define if you have the <errno.h> header file. */
+#undef HAVE_ERRNO_H
+
+/* Define if you have the <fcntl.h> header file. */
+#undef HAVE_FCNTL_H
+
+/* Define if you have the `fdopen' function. */
+#undef HAVE_FDOPEN
+
+/* Define if your system has a working `fnmatch' function. */
+#undef HAVE_FNMATCH
+
+/* Define if you have the <fnmatch.h> header file. */
+#undef HAVE_FNMATCH_H
+
+/* Define if you have the <gdbm.h> header file. */
+#undef HAVE_GDBM_H
+
+/* Define if you have the `gethostname' function. */
+#undef HAVE_GETHOSTNAME
+
+/* Define if you have the <getopt.h> header file. */
+#undef HAVE_GETOPT_H
+
+/* Define if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define if you have the `gdbm' library (-lgdbm). */
+#undef HAVE_LIBGDBM
+
+/* Define if you have the `nsl' library (-lnsl). */
+#undef HAVE_LIBNSL
+
+/* Define if you have the `socket' library (-lsocket). */
+#undef HAVE_LIBSOCKET
+
+/* Define if you have the <limits.h> header file. */
+#undef HAVE_LIMITS_H
+
+/* Define if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define if you have the `mkdir' function. */
+#undef HAVE_MKDIR
+
+/* Define if you have the `mktime' function. */
+#undef HAVE_MKTIME
+
+/* Define if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* Define if you have the <netdb.h> header file. */
+#undef HAVE_NETDB_H
+
+/* Define if you have the `select' function. */
+#undef HAVE_SELECT
+
+/* Define if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
+
+/* Define if you have the `snprintf' function. */
+#undef HAVE_SNPRINTF
+
+/* Define if you have the `socket' function. */
+#undef HAVE_SOCKET
+
+/* Define if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define if you have the `strerror' function. */
+#undef HAVE_STRERROR
+
+/* Define if you have the `strftime' function. */
+#undef HAVE_STRFTIME
+
+/* Define if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define if you have the `strstr' function. */
+#undef HAVE_STRSTR
+
+/* Define if you have the <syslog.h> header file. */
+#undef HAVE_SYSLOG_H
+
+/* Define if you have the <sys/dir.h> header file, and it defines `DIR'. */
+#undef HAVE_SYS_DIR_H
+
+/* Define if you have the <sys/ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_SYS_NDIR_H
+
+/* Define if you have the <sys/resource.h> header file. */
+#undef HAVE_SYS_RESOURCE_H
+
+/* Define if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define if you have the <sys/utsname.h> header file. */
+#undef HAVE_SYS_UTSNAME_H
+
+/* Define if you have the <time.h> header file. */
+#undef HAVE_TIME_H
+
+/* Define if you have the `uname' function. */
+#undef HAVE_UNAME
+
+/* Define if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define if you have the `vsnprintf' function. */
+#undef HAVE_VSNPRINTF
+
+/* Define if you have the `__snprintf' function. */
+#undef HAVE___SNPRINTF
+
+/* Define if you have the `__vsnprintf' function. */
+#undef HAVE___VSNPRINTF
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define as the return type of signal handlers (`int' or `void'). */
+#undef RETSIGTYPE
+
+/* Define if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Define if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* Version number of package */
+#undef VERSION
+
+/* Define if on AIX 3.
+   System headers sometimes define this.
+   We just want to avoid a redefinition error message.  */
+#ifndef _ALL_SOURCE
+# undef _ALL_SOURCE
+#endif
+
+/* Define if on MINIX. */
+#undef _MINIX
+
+/* Define if the system does not provide POSIX.1 features except with this
+   defined. */
+#undef _POSIX_1_SOURCE
+
+/* Define if you need to in order for `stat' and other things to work. */
+#undef _POSIX_SOURCE
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Define to `unsigned' if <sys/types.h> does not define. */
+#undef size_t
+
+
+#endif /* CONFIG_H */
+
