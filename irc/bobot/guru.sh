@@ -1,4 +1,6 @@
 #!/bin/sh
 
-cd guru && bobot++
-cd ..
+read BASE < config/base
+
+cd ${BASE}/irc/bobot/guru
+bobot++
