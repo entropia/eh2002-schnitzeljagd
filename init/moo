@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+case "$1" in
+  start)
+    echo "Starte lambdamoo..."
+    /etc/init.d/lambdamoo start
+    ;;
+  stop)
+    echo "Beende lambdamoo..."
+    /etc/init.d/lambdamoo stop
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac
