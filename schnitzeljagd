@@ -1,13 +1,28 @@
 #!/bin/sh
 case "$1" in
-    start)
+    nstart)
+        if [ $UID -ne 0 ]; then
+            echo "nur als root"
+            exit 1
+        fi
         ./init/network start
+        ;;
+    nstop)
+        if [ $UID -ne 0 ]; then
+            echo "nur als root"
+            exit 1
+        fi
+        ./init/network stop 
+        ;;
+    start)
         ./init/httpd start 
         ./init/diary start 
         ;;
     stop)
-        ./init/diary stop
         ./init/httpd stop
-        ./init/network stop 
+        ./init/diary stop
+        ;;
+    *)
+        echo "$0 {nstart|nstop|start|stop}"
         ;;
 esac        
