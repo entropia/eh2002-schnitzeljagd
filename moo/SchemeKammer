@@ -19,7 +19,7 @@ drop papier3
 
 @create $thing named sicp,buch
 @describe sicp as "http://mitpress.mit.edu/sicp/"
-drop buch1
-@lock buch1 with me
+drop buch
+@lock buch with me
 
 gang
