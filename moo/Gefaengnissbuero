@@ -2,11 +2,14 @@
 
 @describe here as "Ein oedes Buero, 60er-jahre Stil, mit Bluemchentapete. Es haengen Fotos von McKusik, Thompson und Ritchie an der Wand, darunter der Spruch \"Long lives the eternal Scheduler\" mit Blut geschrieben. Ein paar Regale an der Wand machen das Zimmer zu einem ziemlich duesteren Ort. Auf dem Schreibtisch in der Mitte des Zimmers steht ein uraltes HP 700/RX Terminal, der Bildschirm flackert wacker mit 60 Hz vor sich hin."
 
-@details Schreibtisch,Tisch "Auf dem Tisch liegt ein bisschen zugekritzeltes Papier rum, auf dem Terminal ist nur ein Screensaver zu erkennen. Am rechten Schreibtischende liegt eine zerwuestete erste Auflage vom Kernighan und Ritchie Buch rum."
+@create $thing called Schreibtisch,Tisch 
+@describe Tisch as "Auf dem Tisch liegt ein bisschen zugekritzeltes Papier rum, auf dem Terminal ist nur ein Screensaver zu erkennen. Am rechten Schreibtischende liegt eine zerwuestete erste Auflage vom Kernighan und Ritchie Buch rum."
 
-@details terminal,hp,700rx,rx "Auf dem Bildschirm erscheinen unerlaesslich bunte geometrische Formen. Wenn man die Maus bewegt oder die Tastatur benutzt, passiert nichts."
+@create $thing called Terminal,hp,700rx,rx
+@describe terminal as "Auf dem Bildschirm erscheinen unerlaesslich bunte geometrische Formen. Wenn man die Maus bewegt oder die Tastatur benutzt, passiert nichts."
 
-@details regal "Die Regale sind aus dunklem Holz, und Staub bedeckt. Sonst kann man nichts wichtiges erkennen."
+@create $thing called Regal,Regale
+@describe regal "Die Regale sind aus dunklem Holz, und Staub bedeckt. Sonst kann man nichts wichtiges erkennen."
 
 @dig osten,o|westen,w to Rechnerraum
 
