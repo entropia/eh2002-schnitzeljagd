@@ -4,11 +4,17 @@ n2
 
 @create $thing called Rechner,computer,workstation,unix 
 @describe computer as "Lauter vergilbte Rechner, auf denen verschiedene Unixe und Unixderivate laufen. Leider kennst du keinen Account, und zum h4x0rn hast du keine Zeit. Tja, ein andermal..."
+drop computer
+@lock computer with me
 
 @create $thing called Wand,sprueche,graffiti
 @describe sprueche as "VMS User sollen sterben! Und Windows User sowieso! Alle Unixgegner sollen einfach leise und woanders aussterben, und die Welt in Frieden lassen. Armselige Wuerstchen!"
+drop wand
+@lock wand with me
 
 @create $thing called Schreibtisch,buero,tisch
 @describe buero as "Auf dem Schreibtisch steht einen NEWS-Rechner, mit Monitor und Tastatur. Es laeuft auf dem Rechner kein xlock, und du kannst genau sehen, wie auf einem xterm folgendes Programm laeuft: \"./prison2prisond -mode xor 229.23.23.1 1500\""
+drop buero
+@lock buero with me
 
 sueden
