@@ -1,0 +1,9 @@
+#!/bin/sh
+# config/polizei/bullencode/bullsafe.c
+# config/spert/helpmail
+# config/polizei/ermittlungen.txt
+# config/polizei/brisantes-material.txt <- gecryptet mit bullencode/safe
+make -C bullencode
+bullencode/safe -e < brisantes-material.txt > brisantes-material.txt.bullsafed
+cd ..
+tar cfvz polizei/ermittlungen.tar.gz spert/helpmail polizei/bullencode/bullsafe.c polizei/ermittlungen.txt polizei/brisantes-material.txt.bullsafed
