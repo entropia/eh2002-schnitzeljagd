@@ -8,7 +8,7 @@ drop buch
 @lock buch with me
 
 @create $thing called Gefaengnisplan,plan
-@describe plan as "Auf dem Gefaengnisplan koennt ihr sehen, dass es am Ende des Kellergangs einen geheimen Gang gibt (go geheim). Es steht auch was von \"Magie! Stunnel! Kryptierung!\" dort geschrieben, aber das macht irgendwie keinen Sinn!"
+@describe plan as "Auf dem Gefaengnisplan koennt ihr sehen, dass es am Ende des Kellergangs einen geheimen Gang gibt (go geheim). Es steht auch was von \"Magie! SSH-Tunnel! Kryptierung!\" dort geschrieben, aber das macht irgendwie keinen Sinn!"
 drop plan
 @lock plan with me
 
