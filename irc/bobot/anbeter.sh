@@ -5,7 +5,7 @@ read BASE < config/base
 cd ${BASE}/irc/bobot/anbeter
 
 (while read i; do 
-   sed -e "s/@IRCNAME@/$i/g" -e "s/@NICKNAME@/$i/g" anbeter/bot.conf.orig > anbeter/bot.$i.conf
+   sed -e "s/@IRCNAME@/$i/g" -e "s/@NICKNAME@/$i/g" bot.conf.orig > bot.$i.conf
    bobot++ -f bot.$i.conf
    sleep 3
-done) < anbeternamen.txt
+done) < ../anbeternamen.txt
