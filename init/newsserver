@@ -1,0 +1,17 @@
+#!/bin/sh
+read BASE	< config/base
+case "$1" in
+  start)
+    echo "Starte newsserver..."
+    read ip	< config/polizei/ip
+    read port  	< config/polizei/news/port
+    bin/tcpserver $ip $port $BASE/run/noffle/bin/noffle -r &
+    ;;
+  stop)
+    echo "Beende newsserver..."
+    killall tcpserver
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac
