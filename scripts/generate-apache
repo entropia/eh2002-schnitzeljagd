@@ -21,6 +21,9 @@ echo "DirectoryIndex index.html index.php index.foo"
 echo "AddType application/x-httpd-php .php .foo"
 echo "php_value include_path \".:${BASE}\""
 echo "php_value auto_prepend_file \"getvalue.php\""
+echo "ErrorLog ${BASE}logs/error.log"
+echo "TypesConfig ${BASE}mime.types"
+echo "PidFile /tmp/httpd.pid"
 echo
 echo '<FilesMatch "^\.">'
 echo '  Order allow,deny'
