@@ -1,0 +1,288 @@
+vor sich hinbetende IRC bots (4.4.4.4)
+----------------
+Oh du heiliger Scheduler
+Ich weiss, dass meine Timeslice zuende ist
+Ich hoffe aber, dass ich eines Tages neugeforkt werde,
+Drum befreie mich von meinen mallocs.
+
+Asche zu Asche, Prozess zu Zombie.
+Mein Coredump mag zwar verrotten,
+Meine Rampages neu alloziert werden,
+Der Syslog wird mich stets in Erinnerung behalten.
+
+Du rosa Troll der Finsternis,
+Komm über uns und mach uns zu deinen treuen fäfäs
+Plonke die Newbies und Plenker dieser Welt  ,
+auf dass deine Signatur kurz bleibt und dein Geflame nie erlischt.
+
+Ach Geh Ster ben 
+du Lern Re sis ten ter Troll
+Lei se. drau sen.
+----------------
+
+
+Die Sekte versteckt sich in einem Ircserver auf 4.4.4.4:65535, 
+Channel #guru-meditation (passwortgeschützt und secret)
+
+Ziel ist es, den Guru zu deoppen
+-> Identifizieren beim Reingehen
+
+-> Passwort fuer den Bot
+-> IRCOP werden in dem man sich von localhost ins IRC einwaehlt (von ssl tunnelende aus)
+-> IRCOP werden ueber Passwort
+-> stunnel zu der chatline des Bots mit gefundenem RSA key zu x509 Zertifikat
+
+------------------------------------------------
+
+Wie kommt man auf die Sekte
+
+Newsgroup mit Hinweisen (versteckt)
+Festivalrechner fuer Hinweise (sporadisch sagt der Rechner irgendwas)
+
+Rechner mit verschiedenen Ambienten (finger, telnet, smtp, webseiten)
+
+Raueme beschreiben in einem MUD
+
+------------------------------------------------
+
+Ein Vortragender wurde entfuehrt, man muss ihn wiederfinden
+Vortrag ueber die blutruenstige Schedulersekte, die mit kill -9
+jungfraeuliche Prozesse dem 3v1l r00t opfert.
+
+Er ist verschwunden, aber sein Rechner haengt noch am Netz
+
+ANFANGSHINWEISE:
+
+- Steckbriefe und Notizen an die Waenden kleben
+    + Hacker gesucht
+      postmaster - tomas spert
+      Dieser junge Netzexperte muss auf der Gulaschprogrammiernacht einen Vortrag ueber die
+      verwerfliche Sekte der Scheduleranbeten, und junge jungfraueliche Hacker vor ihrem
+      boesen Tun warnen. Er ist aber verschwunden! Sein Notebook haengt noch am Netz, er kann
+      also noch nicht lange weg sein.
+            Hotline: tel/net 2.2.2.2
+                     nach port Heinz Zwo-Vier fragen
+
+
+      H1lf3!!! 1ch w3rd3 v3rf0lgt! t0m4s sp3rt
+      B4ld h4b3n s13 m1ch!!! t0m4s sp3rt
+      d1e Sch3d\/l3r 4nb3t3r s1nd h1nt3r m1r h3r! t0m4s sp3rt
+
+- Hilfemails durch die Gegend schicken (von 3.3.3.3 aus)
+- In der Newsgroup posten (auf 2.2.2.2 port 119)
+      Im Header steht die IP vom dem Anbetergefaengnis
+      In der Mail steht:
+
+      From: tomas.spert@anbeter-gefaengnis.de (3.3.3.3)
+      Subject: h1lf3!
+
+      hilfe, ich wurde von der schedule(2)sekte gejail(2)t und gechroot(2)et. 
+      rettet mich vor dem signal(SIGKILL). sucht die numerischen eingaenge meines gefaengnisses 
+      nach einen zugang ab, zu dem ihr anschluss findet.
+      r3tt3t m1ch!
+
+      tomas spert
+
+- Mikrofondurchsage:
+      tomas spert hat sein Notebook hier liegen lassen. Er moege es bitte abholen. es hat die IP 
+      adresse 1.1.1.1
+
+1.1.1.1 port 23:
+    komisches Protokoll: DIARY PROTOCOL
+
+    < DIARY PROTOCOL SERVER <1.0> ready
+
+    > müll
+    < NAK: try HELP
+
+    > HELP
+    < ACK: CHALLENGE RESPONSE AUTH LIST GET QUIT
+
+    Anmeldung über Challenge Response:
+
+    > CHALLENGE 
+    < ACK: blorg (Zahl zwischen 0 und 10000)
+    
+    > RESPONSE/AUTH foo
+    entweder
+    < NAK: Passwort falsch. Richtig wäre (base64(blorg + 1))
+    + Challenge abgelaufen
+    < NAK: keine Challenge: Zuerst mit CHALLENGE erzeugen
+    < ACK: Authenticated
+    
+    2 Möglichkeiten. 
+        - Bruteforce. Solange alle 10000 Möglichkeiten druchgehen bis bekannt
+        - Algorithmus rausfinden 
+
+    > LIST
+    < ACK: 1 2 3 ...
+
+    > GET x
+    < ACK:
+        1 - Vorgestern:
+            Habe Dichtkunst der Scheduler entdeckt:
+            [irgendeins von oben]
+        2 - Gestern:
+            Wurde heute von Schedulern bedroht. blafasel 
+        3 - Heute:
+            Habe Bericht über die Scheduleraktivitäten geschrieben.
+            Noch nicht vollständig. Werde eventuell morgen eine neue version auf
+            http://1.1.1.1/phpduke/_iisr00t/myfirstcms.foo veröffentlichen
+
+
+    Webserver auf 1.1.1.1:80
+    
+    Auf /: All your Base65 are belong to us!!!!!!!
+    
+    myfirstcms: Schön bunt blablubb.
+
+    Script mit path traversal bug um auf bericht zuzugreifen
+    Alternativ: bericht liegt (scheinbar) in http://1.1.1.1/phpduke/_iisr00t/./   
+
+
+    
+    ---- Bericht -----
+
+
+    [müll zusammengooglen]
+    
+    Dazwischen beschreibung für ein cryptoalgorithmus [FIXME: was für einer]
+    mit dem man an das ircop passwort des scheduler ircserver kommt.
+
+    -------------------
+            
+
+--------------
+2.2.2.2 port 124:
+    
+    < Willkommen auf dem Polizeisystem [version 0.1]
+    [spannungsteigernde 2 sekundenpause]
+
+    mainloop:
+    < 1. Hinweis eintragen
+    < 2. Hinweise lesen
+    < 3. Einloggen
+    < > 
+    
+    > 1
+    < Hinweis: 
+    > blafasel
+    < Danke. Dein Hinweis wird bearbeitet.
+    mainloop
+
+    > 2
+    < Bisherige Hinweise:
+    < [letzten 20 hinweise]
+
+    3> Login
+    
+    zu langer login string für zum einloggen 
+
+    neue Hinweise:
+    
+       - IP von sperts laptop hat IP 1.1.1.1
+       - Neues Polizeisystem in Entwicklung (hinweis auf http://2.2.2.2/dev/ (user/pass) wo der 
+         sourcecode liegt) -> richtiger Bufferoverflow
+
+2.2.2.2 port 55988 in uml
+    neues Polizeisystem
+    richtig user werden
+    groessere Hinweise:
+    
+       - Aufzeichnung von Kommunikationen 
+         Geheimer Schlüssel in Komischem format zum Einloggen auf dem Sektenircserver
+       - in "Sent Mails": Mail von oben
+       - Nicht funktionierender Code um Polizeidaten zu entschlüsseln in 
+         Softwaresuite (Bullencode) der polizei. 
+         Software hat Fehler, segfaultet. Kompiliert nicht. etc.
+
+    Mit hilfe dieser software weitere hinweise:
+
+       - Komisches Format zu PEM Umwandler um zum Sektenircserver 
+         über stunnel (4.4.4.4:39162) verbinden  
+       
+
+2.2.2.2 port 119: Polizeimeldungen
+
+    Müllpostings
+
+    Zwischendurch immer wieder echte hinweise:
+
+       - Mail von oben
+
+    Je nach Ablauf: Weitere Hinweise:
+
+       - BULLENCODE NOW OPENSOURCE! MAKE MONEY FAST!!!! XXX
+         mit Hinweis auf Url http://2.2.2.2/projects/bullencode/ zum download und ip auf dem 
+         das neue Polizeisystem läuft (2.2.2.2:55988).
+
+       - Frage und zeitverzögert Antwort auf eine Anfrage für ein beispiel eines
+         sicheren Challenge Response verfahren. Die Antwort kommt dabei vom Autor des
+         DIARY PROTOCOL SERVER
+
+       - Geständis eines Gefängismitarbeiters über die dunklen Machenschaften
+
+
+3.3.3.3:6346
+    
+    Scheduler haben sich in einem Gefängnis eingekauft und haben 
+    spert dort bis gestern gefangengehalten, bevor es den Gefängisverwaltung 
+    zu bunt wurde.
+
+    Minimud mit gefängnisathosphere über telnet erreichbar
+
+    Mehrere "The grue eats your face" Fallen
+    Andere Anspielungen:
+
+        - "Ich verkaufe diese wunderschönen Lederjacken"...
+        - "To win this game, you must kill me, Evil Oberguru"
+    
+    Weitere hinweise:
+
+        - Spert wird nicht mehr hier gefangengehalten sondern ist jetzt im Sektentempel
+        - Hinweis auf per broadcast versendete Botschaften (im Prison-to-Prison Protocol)
+          und möglichkeiten diese zu entschlüsseln
+
+    Gefängnis broadcastet via multicast botschaften.
+    (Vielleicht auch Nachrichten im Newsserver der Polizei 2.2.2.2:119 spiegeln in
+     alt.anonymous.p2p)
+
+    Darin:
+
+        - Jede Menge unfug z.B. Gefangenenverlegungen, Ausbruchsstatistiken, 
+          Hinweise auf die Polizei und deren System.
+          
+        - immer wieder bruchstückartig Zusammenhänge zwischen Gefängnis und Schedulern.
+          Und auch dass Spert nicht mehr hier ist, sondern in den Scheduler Tempel gebracht 
+          wurde.
+
+    [HAUPTRÄTSEL]
+
+-------
+Technikübersicht:
+
+Sperts Notebook 
+1.1.1.1:23 diary protocol server
+1.1.1.1:80 webserver
+    
+        http://1.1.1.1/phpduke/_iisr00t/myfirstcms.foo
+        etc...
+
+Polizei        
+2.2.2.2:124 Polizeisystem
+2.2.2.2:55988 Bullencode im Usermodelinux
+2.2.2.2:119 Polizei Newsserver        
+2.2.2.2:80 Webserver
+
+        http://2.2.2.2/dev/ (user/pass) bullencode source
+        http://2.2.2.2/projects/bullencode/ - bullencode source
+
+Korruptes Gefängnis        
+3.3.3.3:6346 Mud
+
+Sektentempel: 
+4.4.4.4:65535 Sekten Ircserver
+4.4.4.4:39162 ssl tunnel zum ircserver
+4.4.4.4:31337 Gurubot chatline
+
+*:finger: Fingerserver mit informationen zur ip

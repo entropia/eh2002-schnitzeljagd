@@ -1,0 +1,15 @@
+#!/bin/sh
+BASE="`cat config/base`"
+HTTPD=${BASE}/bin/httpd
+
+case "$1" in
+  start)
+    $HTTPD -f ${BASE}/httpd.conf
+    ;;
+  stop)
+    killall httpd
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac

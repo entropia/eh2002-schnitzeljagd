@@ -1,0 +1,2 @@
+stunnel -d 192.168.1.99:12345 -r 127.0.0.1:25       -p ./stunnel.pem -f -P ./pid.pid -v 3
+stunnel -c                    -r 192.168.1.99:12345 -p ./stunnel.pem -f 

@@ -1,0 +1,17 @@
+#!/bin/sh
+LOC="polizei prison sekte spert"
+case "$1" in
+  start)
+    for loc in $LOC; do
+        ifconfig `cat ./config/${loc}/device` `cat ./config/${loc}/ip` up
+    done
+    ;;
+  stop)
+    for loc in $LOC; do
+        ifconfig `cat ./config/${loc}/device` down
+    done
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac

@@ -1,0 +1,25 @@
+#!/usr/bin/perl
+my $i = 1;
+
+BLORG: while (1) {
+    last BLORG unless open(TOPIC, "./config/spert/diary/entries/$i/topic");
+    die("message zu topic $i nicht gefunden") unless open(MESSAGE, "./config/spert/diary/entries/$i/message");
+    
+    $fuck=<TOPIC>;
+    chomp($fuck);
+    push @topics, $fuck;
+
+    $msg = "";
+    while (<MESSAGE>) { $msg.=$_; }
+    push @messages, $msg; 
+    
+    close TOPIC;
+    close MESSAGE;
+    $i++;
+}
+
+print "# Topics\n";
+print "\@topics = (\n".(join ",\n", map { $_ = "  \"$_\""; } @topics)."\n);\n\n";
+print "# Messages\n";
+print "\@messages = (\n".(join ",\n", map { $_ = "  \"$_\""; } @messages)."\n);\n";
+

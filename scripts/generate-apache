@@ -1,0 +1,82 @@
+#!/bin/sh
+BASE="`cat config/base`"
+HTPASSWD=${BASE}bin/htpasswd
+
+echo "User nobody"
+echo "Group nogroup"
+echo "MinSpareServers 5"
+echo "MaxSpareServers 10"
+echo "StartServers 5"
+echo "MaxClients 150"
+echo "Timeout 300"
+echo "KeepAlive On"
+echo "MaxKeepAliveRequests 100"
+echo "KeepAliveTimeout 15"
+echo "ErrorDocument 403 \"Access denied: Nope. So nicht."
+echo "ErrorDocument 404 \"Access denied: Nope. So nicht."
+echo "ServerTokens ProductOnly"
+echo "ServerSignature Off"
+echo "LoadModule php4_module ${BASE}bin/libphp4.so"
+echo "DirectoryIndex index.html index.php index.foo"
+echo "AddType application/x-httpd-php .php .foo"
+echo "php_value include_path \".:${BASE}\""
+echo "php_value auto_prepend_file \"getvalue.php\""
+echo
+echo '<FilesMatch "^\.">'
+echo '  Order allow,deny'
+echo '  Deny from all'
+echo '</FilesMatch>'
+
+for loc in polizei spert; do
+    echo "# $loc"
+
+    IP="`cat config/$loc/ip`"
+    #PORT="`cat config/$loc/www/port`"
+    PORT=8888
+    ADMINEMAIL="`cat config/$loc/www/adminemail`"
+
+    echo "Listen $IP:$PORT"
+    echo "<VirtualHost $IP:$PORT>"
+    
+    echo "  ServerAdmin $ADMINEMAIL"
+    echo "  DocumentRoot ${BASE}config/$loc/www/root/"
+    echo "  ServerName $IP" # FIXME: was hier einstellen?
+    echo "  ErrorLog ${BASE}logs/error_$loc.log"
+    echo "  TransferLog ${BASE}logs/access_$loc.log"
+    
+    echo "  <Directory />"
+    echo "    AllowOverride None"
+    echo "    Options -All"
+    echo "  </Directory>"
+    echo "  <Directory ${BASE}config/$loc/www/root/>"
+    echo "    Options -All"
+    echo "  </Directory>"
+
+    for dir in config/$loc/www/*-root; do
+        USER=`echo $dir| sed -e "s%-root\$%-user%"`
+        PASS=`echo $dir| sed -e "s%-root\$%-pass%"`
+        if [ -f $USER -a -f $PASS ]; then
+            DIR="${BASE}config/$loc/www/root`cat $dir`"
+            echo "  # Passwortschutz für $DIR"
+            if [ ! -d "$DIR" ]; then
+                echo "  # XXXXXXX ACHTUNG: Verzeichnis exisitert nicht :-( XXXXXXXX"
+            else
+                USERNAME=`cat $USER`
+                PASSWORD=`cat $PASS`
+                FILE="$DIR.htpasswd"
+                echo "  # user:$USERNAME/pass:$PASSWORD in $FILE"
+                $HTPASSWD -bn $USERNAME $PASSWORD > $FILE 
+
+                echo "  <Directory $DIR>"
+                echo "    AuthType Basic"
+                echo '    AuthName "Restricted Directory"'
+                echo "    AuthUserFile \"$FILE\""
+                echo "    require valid-user"
+                echo "  </Directory>"
+            fi
+        fi
+    done        
+    
+    echo "</VirtualHost>"
+
+done

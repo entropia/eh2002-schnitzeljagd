@@ -1,0 +1,14 @@
+[Tue Mar 19 16:00:37 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd//config/spert/www/root/
+[Tue Mar 19 16:01:40 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd//config/spert/www/root/
+[Tue Mar 19 16:09:06 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd//config/spert/www/root/
+[Tue Mar 19 16:10:00 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 16:10:03 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/phpduke/
+[Tue Mar 19 16:10:10 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/phpduk
+[Tue Mar 19 16:10:13 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 16:12:29 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 16:12:47 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 16:12:49 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/fsdf
+[Tue Mar 19 16:12:54 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/fsdf
+[Tue Mar 19 16:12:56 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 16:13:13 2002] [error] [client 192.168.1.44] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/
+[Tue Mar 19 23:24:46 2002] [error] [client 192.168.1.44] File does not exist: /home/dividuum/progs/cvs/schnitzeljagd/config/spert/www/root/dev/
