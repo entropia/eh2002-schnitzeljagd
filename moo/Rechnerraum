@@ -1,0 +1,7 @@
+@describe here as "Im Rechnerraum stehen ganz viele dolle Unixrechner. Darunter RS6000 Rechner, SGIs, HPs, und alles woran man nur denken kann. An den Waenden sind Sprueche gesprueht worden. In der Mitte des Raumes ist ein grosser Schreibtisch mit einem Ledersessel. Es scheint keiner anwesend zu sein."
+
+@details rechner,computer,workstation,unix "Lauter vergilbte Rechner, auf denen verschiedene Unixe und Unixderivate laufen. Leider kennst du keinen Account, und zum h4x0rn hast du keine Zeit. Tja, ein andermal..."
+
+@details wand,sprueche,graffiti "VMS User sollen sterben! Und Windows User sowieso! Alle Unixgegner sollen einfach leise und woanders aussterben, und die Welt in Frieden lassen. Armselige Wuerstchen!"
+
+@details buero,schreibtisch "Auf dem Schreibtisch steht einen NEWS-Rechner, mit Monitor und Tastatur. Es laeuft auf dem Rechner kein xlock, und du kannst genau sehen, wie auf einem xterm folgendes Programm laeuft:
