@@ -1,5 +1,25 @@
 k6
 
-@describe here as ""
+@describe here as "Eine kleine Kammer, mit Schreibtisch, Totenkopf und Kerzen. Es liegen viele Papiere rum, und an der Tafel an der Wand stehen mehrere Lambda Ausdruecke. Es scheint so, als waer dies die Kammer des Schedulergurus. Im Regal kannst du das BSD4.3 Buch und \"Structure and Interpretation of Computer Programs\" erkennen."
+
+@create $thing named papier1
+@describe papier1 as "Auf dem Papier steht: \"Zum Glueck weiss niemand, dass ich eigentlich ein Programm der bobot++ Rasse bin, und das ich auf dem Planet http://blabalbla.com/bobot++ geboren wurde."
+drop papier1
+@lock papier1 with me
+
+@create $thing named papier2
+@describe papier2 as "Im Laufe meines Lebens habe ich an meinem Koerper einen Defekt gefunden. Meine Gene sind als Scheme codiert, und ein bestimmte Code toetet mich! Dazu muss man ein bisschen den Sourcecode des Original-bobot++ Programms lesen. Hoffentlich findet das keiner meiner Gegner heraus."
+drop papier2
+@lock papier2 with me
+
+@create $thing named papier3
+@describe papier3 as "Ich konnte meinen genetischen Defekt isolieren. Auf dem scripts/guru Chromosom ist ein Gen von den Strahlungen zerstoert worden. Ich konnte ihn dekodieren, er sieht folgendermassen aus: (define (guru-krass f c p) (call-with-input-string p (lambda (text) (let ((blorg (eval (read text)))) (call-with-input-string (car blorg) (cdr blorg)))))) (bot-addhook hooks/public \"bot-die\" guru-krass). Dies koennte mein Ende bedeuten!"
+drop papier3
+@lock papier3 with me
+
+@create $thing named sicp,buch
+@describe sicp as "http://press.mit.edu/sicp/blablabla"
+drop buch1
+@lock buch1 with me
 
 gang
