@@ -12,7 +12,8 @@ Wir bitten um Hinweise zum Verschwinden von "tomas spert". <br>
 Sachdienliche Hinweise werden unter 
 <i>tel/net <? echo getvar("config/polizei/ip"); ?></i>
 von Herrn<br>
-<i><? echo getvar("config/polizei/polsys/portname"); ?></i> entgegengenommen.
+<i><? echo getvar("config/polizei/polsys/portname"); ?></i> entgegengenommen.<br>
+Nutzen Sie bitte auch den Newsdienst unter <i><? echo getvar("config/polizei/ip"); ?>:1119</i>
 </td></tr>
 </table>
 </body>

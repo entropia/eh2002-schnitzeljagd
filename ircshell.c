@@ -3,5 +3,5 @@
 
 int main(void) {
    printf("Dies ist ein IRC Server. Sie wurden gewarnt!\n");
-   return system("/usr/bin/nc localhost 6667");
+   return system("/usr/bin/nc 172.16.2.75 6667");
 }

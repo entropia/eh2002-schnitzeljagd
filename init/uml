@@ -2,19 +2,10 @@
 case "$1" in
   start)
     echo "Starte uml..."
-    echo "###################################################"
-    echo "###################################################"
-    echo "###################################################"
-    echo
-    echo "uml muss im moment manuell gestartet werden."
-    echo 
-    echo "###################################################"
-    echo "###################################################"
-    echo "###################################################"
-    #(
-    #    cd uml
-    #    ./run-uml
-    #) &
+    cd uml
+    screen -dmS "User Mode Linux" ./run-uml
+    echo "gebe uml Zeit um zu booten..."
+    sleep 30
     ;;
   stop)
     echo "Beende uml..."
