@@ -2,4 +2,9 @@ k2
 
 @describe here as "Hier findest du einen Amiga, und alle Lucasart spiele. Der Traum! Auf dem Regal findest du Kekse, Gras, Cola und Ephedrin. Du koenntest hier wirklich Jahre verbringen. Dann hoerst aber wieder einen Schrei! Von hier kommst du nur zum Gang (go gang)."
 
+@create $thing named zettel,papier,notiz
+@describe zettel as "Ich hab endlich die SSH-Passwort Formel fuer idspispopd gefunden! Sie lautet: idspispopd. Wie einfallsreich! Da haette ich auch selben drauf kommen koennen."
+drop zettel
+@lock zettel with me
+
 gang

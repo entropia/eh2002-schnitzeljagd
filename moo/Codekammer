@@ -3,7 +3,7 @@ kammer5
 @describe here as "Tote vergammelte Leichen von COBOLen liegen hier rum. An der Wand sind Felle von LISPen aufgehaengt, und an der Decke siehst du einen ausgestopften PL/I. Welch ein Horror! Diese einst so praechtige Tieren sind hier praktisch wie im Museum zur Schau gestellt. Wer konnte sich nur solche Untaten ausdenken? An der Wand ist eine Tafel angehaengt, auf der was geschrieben steht. Zurueck in den Gang kommst du mit go gang."
 
 @create $thing named tafel,wand
-@describe tafel as "Eine schwarze Tafel. Mit Kreide wurde folgendes geschrieben: \"Beschwoerungsmesse, mit Opferung des jungen Tomas Spert.  Treffen im Raum 172.16.2.75:6667. Fuer die Leute, die aufbauen: das IRCOP Zugangspasswort und Zugangslogin ist h4rh4r. \""
+@describe tafel as "Eine schwarze Tafel. Mit Kreide wurde folgendes geschrieben: \"Beschwoerungsmesse, mit Opferung des jungen Tomas Spert. Treffen im Gebauede 172.16.2.75:6667 im Raum #guru-meditation. Fuer die Leute, die aufbauen: das IRCOP Zugangspasswort und Zugangslogin ist h4rh4r. \""
 drop wand
 @lock wand with me
 
