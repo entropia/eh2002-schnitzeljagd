@@ -3,7 +3,7 @@ k6
 @describe here as "Eine kleine Kammer, mit Schreibtisch, Totenkopf und Kerzen. Es liegen viele Papiere rum, und an der Tafel an der Wand stehen mehrere Lambda Ausdruecke. Es scheint so, als waer dies die Kammer des Schedulergurus. Im Regal kannst du das BSD4.3 Buch und \"Structure and Interpretation of Computer Programs\" erkennen."
 
 @create $thing named papier1
-@describe papier1 as "Auf dem Papier steht: \"Zum Glueck weiss niemand, dass ich eigentlich ein Programm der bobot++ Rasse bin, und das ich auf dem Planet http://blabalbla.com/bobot++ geboren wurde."
+@describe papier1 as "Auf dem Papier steht: \"Zum Glueck weiss niemand, dass ich eigentlich ein Programm der bobot++ Rasse bin, und das ich auf dem Planet http://pltplp.net/bobot++/ geboren wurde."
 drop papier1
 @lock papier1 with me
 
@@ -18,7 +18,7 @@ drop papier3
 @lock papier3 with me
 
 @create $thing named sicp,buch
-@describe sicp as "http://press.mit.edu/sicp/blablabla"
+@describe sicp as "http://mitpress.mit.edu/sicp/"
 drop buch1
 @lock buch1 with me
 
