@@ -17,17 +17,20 @@ case "$1" in
     rootstart)
         init/uml-redir start
         init/httpd start 
+        init/irc start
+        init/moo start
         ;;
     rootstop)
         init/uml-redir stop 
         init/httpd stop
+        init/irc stop
+        init/moo stop
         ;;
     start)
         init/diary start 
         init/polsys start 
         init/p2p start 
         init/newsserver start 
-        init/irc start
         echo "$0 umlstart als root nicht vergessen"
         ;;
     stop)
@@ -35,7 +38,6 @@ case "$1" in
         init/polsys stop
         init/p2p stop
         init/newsserver stop
-        init/irc stop
         echo "$0 umlstop als root nicht vergessen"
         ;;
     *)
