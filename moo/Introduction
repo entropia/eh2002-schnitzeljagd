@@ -1,3 +1,4 @@
+@set $login.welcome_message to "Willkommen im Schedulergefaengnis. Eine Figur kannst du mit \"create player password\" erstellen. Dann einfach \"connect player password\" machen. Mit \"help\" kriegst du eine Hilfeuebersicht, mit go kannst du dich bewegen. Der MOO ist leider auf englisch."
 
 @dig Gefaengnisgang
 
