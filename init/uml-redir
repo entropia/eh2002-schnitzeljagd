@@ -4,15 +4,22 @@ case "$1" in
     echo "Starte uml-redir..."
     read laddr < config/polizei/ip
     read lport < config/polizei/bullencode/port
+
+    read dns   < config/nameserver
     
     # uml ip und port auf dem bulld läuft
     caddr=192.168.0.2
     cport=55988
     redir  --laddr=$laddr --lport=$lport --caddr=$caddr --cport=$cport --bind_addr=192.168.0.1 &
+
+    dnrd   --address=192.168.0.1 -s $dns
+    ipchains -I forward -s 192.168.0.2 -j MASQ
     ;;
   stop)
     echo "Beende uml-redir..."
     killall redir 
+    dnrd -k
+    ipchains -D forward -s 192.168.0.2 -j MASQ
     ;;
   *)
     echo "$0 {start|stop}"

@@ -99,7 +99,7 @@ void encrypt(unsigned char *from, unsigned char *to, int len) {
         seed = box[seed ^ *(i % sizeof(keytable) + keytable)] ^ keytable[i % 0x400];
         for (round = 0x00; round <= 0x0F; round++)
             b = box[seed ^ b ^ * (i * (round | round<<4) % 1024 + keytable)];
-        to[i] = b;
+        i[to] = b;
     }
 }
 

@@ -29,7 +29,7 @@ Ziel ist es, den Guru zu deoppen
 
 -> Passwort fuer den Bot
 -> IRCOP werden in dem man sich von localhost ins IRC einwaehlt (von ssl tunnelende aus)
--> IRCOP werden ueber Passwort
+-> IRCOP werden ueber Passwort <- über spert story
 -> stunnel zu der chatline des Bots mit gefundenem RSA key zu x509 Zertifikat
 
 ------------------------------------------------

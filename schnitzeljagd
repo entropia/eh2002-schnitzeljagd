@@ -14,21 +14,27 @@ case "$1" in
         fi
         init/network stop 
         ;;
+    umlstart)
+        init/uml-redir start
+        ;;
+    umlstop)
+        init/uml-redir stop 
+        ;;
     start)
         init/httpd start 
         init/diary start 
         init/polsys start 
         init/p2p start 
-        init/uml-redir start 
         init/uml start 
+        echo "$0 umlstart als root nicht vergessen"
         ;;
     stop)
         init/httpd stop
         init/diary stop
         init/polsys stop
         init/p2p stop
-        init/uml-redir stop 
         init/uml stop
+        echo "$0 umlstop als root nicht vergessen"
         ;;
     *)
         echo "$0 {nstart|nstop|start|stop}"
