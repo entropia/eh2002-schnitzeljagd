@@ -71,7 +71,7 @@ for loc in polizei spert; do
             else
                 read USERNAME < $USER
                 read PASSWORD < $PASS
-                FILE="$DIR.htpasswd"
+                FILE="${BASE}${DIR}.htpasswd"
                 echo "  # user:$USERNAME/pass:$PASSWORD in $FILE"
                 $HTPASSWD -bn $USERNAME $PASSWORD > $FILE 
 
