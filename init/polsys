@@ -1,0 +1,14 @@
+#!/bin/sh 
+case "$1" in
+  start)
+    echo "starting polsys..."
+    ./polsys.pl `cat config/polizei/ip` `cat config/polizei/polsys/port` &
+    ;;
+  stop)
+    echo "beende polsys..."
+    killall polsys.pl
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac
