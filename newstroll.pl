@@ -73,8 +73,12 @@ for (my $cur = $first; $cur <= $last; $cur++) {
     my @replyheader = ("Subject: Re: ".$headers{"subject"}, 
                        "From: ".funnyname, 
                        "Newsgroups: ".$headers{"newsgroups"},
-                       "References: ".$headers{"message-id"});
-    my @replybody = ();
+                       "References: ".$headers{"message-id"},
+                       "X-MSMail-Priority: Normal",
+                       "X-Newsreader: Microsoft Outlook Express 5.00.2919.6700",
+                       "X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6700");
+
+    my @replybody = ( $headers{"from"}." schrieb: ", "");
     my $hadtext = 0;
     my $madecomment = 0;
     foreach (@body) {
@@ -87,6 +91,8 @@ for (my $cur = $first; $cur <= $last; $cur++) {
             $madecomment = 1;
         } elsif (/^> (.*)/) {
             # gequoteten schrott weglassen
+        } elsif (/^.*<.*> schrieb:/) {
+            # einleitungszeile nicht kommentieren
         } else {
             # normalen text quoten, falls zeile länger als 2 zeichen
             if (length >= 2) {
@@ -101,10 +107,10 @@ for (my $cur = $first; $cur <= $last; $cur++) {
     }
 
     print "Trolle als Antwort auf ".$headers{"from"}."\n";
-#    $c->post(@replyheader, "", @replybody);
-    print "------\n";
-    print join "\n", @replyheader, "", @replybody;
-    print "\n------\n";
+    $c->post(@replyheader, "", @replybody);
+#    print "------\n";
+#    print join "\n", @replyheader, "", @replybody;
+#    print "\n------\n";
 }
 
 
