@@ -1,0 +1,24 @@
+#!/bin/sh
+export PATH=.:$PATH
+while true; do
+    echo "Entpacke saubere Version des uml rootfs..."
+    bzcat clean.bz2 > root_fs
+    echo "Starte uml..."
+    
+    # jail sollte auch noch hin, benötigt allerdings einen 
+    # dafür kompilierten Kernel. 
+    #
+    # jail enables protection of UML kernel memory from UML processes. 
+    # This is disabled by default for performance reasons. Without it, 
+    # it is fairly simple to break out of UML by changing the right 
+    # pieces of UML kernel data. 
+    #
+    # Da allerdings bulld mit uid 100/guid 1000 läuft dürfte das 
+    # keine probleme verursachen
+    ./linux eth0=slip,192.168.0.1 mem=8m 
+    
+    echo "uml tot? Starte in 10 sekunden neu..."
+    sleep 10
+done    
+    
+
