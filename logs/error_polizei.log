@@ -1,9 +1,0 @@
-[Tue Mar 19 16:14:58 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:23:15 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:23:17 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:23:18 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:24:25 2002] [error] [client 192.168.1.68] client denied by server configuration: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/.harhar.html
-[Tue Mar 19 16:51:20 2002] [error] [client 192.168.1.68] client denied by server configuration: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/.harhar.html
-[Tue Mar 19 16:51:25 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:52:54 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
-[Tue Mar 19 16:53:02 2002] [error] [client 192.168.1.68] Directory index forbidden by rule: /home/dividuum/progs/cvs/schnitzeljagd/config/polizei/www/root/
