@@ -1,6 +1,6 @@
 @dig Gefaengnissbuero
 
-@describe here as "Ein oedes Buero, 60er-jahre Stil, mit Bluemchentapete. Es haengen Fotos von McKusik, Thompson und Ritchie an der Wand, darunter der Spruch \"Long lives the eternal Scheduler\" mit Blut geschrieben. Ein paar Regale an der Wand machen das Zimmer zu einem ziemlich duesteren Ort. Auf dem Schreibtisch in der Mitte des Zimmers steht ein uraltes HP 700/RX Terminal, der Bildschirm flackert wacker mit 60 Hz vor sich hin. Nach sueden geht's zum Gang."
+@describe here as "Ein oedes Buero, 60er-jahre Stil, mit Bluemchentapete. Es haengen Fotos von McKusik, Thompson und Ritchie an der Wand, darunter der Spruch \"Long lives the eternal Scheduler\" mit Blut geschrieben. Ein paar Regale an der Wand machen das Zimmer zu einem ziemlich duesteren Ort. Auf dem Schreibtisch in der Mitte des Zimmers steht ein uraltes HP 700/RX Terminal, der Bildschirm flackert wacker mit 60 Hz vor sich hin. Nach sueden geht's zum Gang. (go sueden)"
 
 @create $thing called Schreibtisch,Tisch 
 @describe Tisch as "Auf dem Tisch liegt ein bisschen zugekritzeltes Papier rum, auf dem Terminal ist nur ein Screensaver zu erkennen. Am rechten Schreibtischende liegt eine zerwuestete erste Auflage vom Kernighan und Ritchie Buch rum."

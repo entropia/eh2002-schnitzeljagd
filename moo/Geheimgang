@@ -1,0 +1,5 @@
+geheim
+
+@describe here as "Ein feuchter, niedriger Gang, der hinter einem Moosmantel versteckt war. Du hoerst den herzzerreissenden Schrei jetzt ganz deutlich, als wuerde ein Prozess gerade vor deinen Augen an einem Segfault sterben. Es ist grausam! An der Wand siehst du, wie ein unschuldiger Mensch versuchte, sich festzukrallen. Am Boden liegt eine abgehackte Hand. Weiter geht's im Geheimgang mit go vorne. Zurueck zum Kellergang mit go keller."
+
+@dig geheim2,vorne|geheim,hinten to Geheimgang2
