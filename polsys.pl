@@ -7,7 +7,8 @@ use POSIX qw(:sys_wait_h);
 my $client;
 
 sub REAPER {
-   1 until (-1 == waitpid(-1, WNOHANG));
+   #until (-1 == waitpid(-1, WNOHANG));
+   waitpid(-1, WNOHANG);
    $SIG{CHLD} = \&REAPER;                 # unless $] >= 5.002
 }
 
@@ -53,19 +54,21 @@ sub saveentry ($) {
    while (<HINWEISE>) { chomp($_); push @hinweise, $_; }
    close HINWEISE;
 
-   cout("\n");
-   sleep(1);
-   cout("'".$_[1]."' wurde gespeichert\n\n");
-   
+   # In hinweise eintragen
    chomp($_[1]);
    shift @hinweise if (@hinweise >= 20);
    push @hinweise, $_[1];
-
+   
+   # Na und wenn schon... solls halt racen
    open(HINWEISE, ">polsys.txt") or return;
    foreach my $eintrag (@hinweise) {
       print HINWEISE $eintrag."\n";
    }
    close HINWEISE;
+
+   cout("\n");
+   sleep(1);
+   cout("'".$_[1]."' wurde gespeichert\n\n");
    
    $_[0]="main"; # XXX: wow. hübsch  
 } 
@@ -117,7 +120,7 @@ my %config = (
                   { "regex" => "2",  "next" =>  "read"},
                   { "regex" => "3",  "next" =>  "login"},
                   { "regex" => "4",  "next" =>  "quit"},
-                  { "regex" => ".*", "func"  =>  \&gpf }]},
+                  { "regex" => ".*", "next" =>  "quit", "func"  =>  \&gpf }]},
    "input" =>  {
       "output" => { "text"  => "Hinweis eintragen:\n\nHinweis:\n\n"},
       "input"  =>[{ "regex" => ".*", "next" =>  "main",     "func"  =>  \&saveentry }]},
@@ -139,7 +142,8 @@ my %config = (
                               "1 - MOTD wiederholen\n".
                               "4 - Abmelden\n"},
       "input"  =>[{ "regex" => "1",  "next" =>  "inside"},
-                  { "regex" => "4",  "next" =>  "main"}]});
+                  { "regex" => "4",  "next" =>  "main"},
+                  { "regex" => ".*", "next" =>  "main", "func"  => \&gpf}]});
    
      
 
