@@ -1,0 +1,10 @@
+malloc
+fork
+free
+write
+open
+fcntl
+ioctl
+close
+kill
+syslog

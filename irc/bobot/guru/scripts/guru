@@ -1,0 +1,28 @@
+(define gedichte
+   '("Oh du heiliger Scheduler"
+     "Ich weiss, dass meine Timeslice zuende ist"
+     "Ich hoffe aber, dass ich eines Tages neugeforkt werde,"
+     "Drum befreie mich von meinen mallocs."
+     "Asche zu Asche, Prozess zu Zombie."
+     "Mein Coredump mag zwar verroten,"
+     "Meine Rampages neu alloziert werden,"
+     "Der Syslog wird mich stets in Erinnerung behalten."
+     "Du rosa Troll der Finsternis"
+     "Komm ueber uns und mach uns zu deinen treue fäfäs"
+     "Plonke die Newbies und Plenker dieser Welt,"
+     "auf dass deine Signatur kurz bleibt, und dein Geflame nie erlischt"))
+
+(define (get-gedicht c) 
+   (lambda ()
+           (let* ((nums    (length gedichte))
+                  (num     (random nums))
+                  (gedicht (list-ref gedichte num)))
+                 (bot-say c gedicht)
+                 (bot-addtimer 10 (get-gedicht c)))))
+
+(define (guru-join n c)
+   (if (string-ci=? n (bot-getnickname))
+       ((get-gedicht c))))
+
+
+(bot-addhook hooks/join ".*" guru-join)

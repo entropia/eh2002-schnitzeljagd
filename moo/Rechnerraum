@@ -1,6 +1,6 @@
 n2
 
-@describe here as "Im Rechnerraum stehen ganz viele dolle Unixrechner. Darunter RS6000 Rechner, SGIs, HPs, und alles woran man nur denken kann. An den Waenden sind Sprueche gesprueht worden. In der Mitte des Raumes ist ein grosser Schreibtisch mit einem Ledersessel. Es scheint keiner anwesend zu sein."
+@describe here as "Im Rechnerraum stehen ganz viele dolle Unixrechner.  Darunter RS6000 Rechner, SGIs, HPs, und alles woran man nur denken kann.  An den Waenden sind Sprueche gesprueht worden. In der Mitte des Raumes ist ein grosser Schreibtisch mit einem Ledersessel. Es scheint keiner anwesend zu sein. Nach sueden geht's wieder zum Gang"
 
 @create $thing called Rechner,computer,workstation,unix 
 @describe computer as "Lauter vergilbte Rechner, auf denen verschiedene Unixe und Unixderivate laufen. Leider kennst du keinen Account, und zum h4x0rn hast du keine Zeit. Tja, ein andermal..."
