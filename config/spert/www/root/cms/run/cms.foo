@@ -1,0 +1,52 @@
+<html>
+<body bgcolor="#ffffff" text="#000000">
+<?
+if (!isset($mode))
+    $mode="list";
+
+$datapath = "../data/";
+
+switch ($mode) {
+    case "list":
+        echo "<ul>";
+        if ($dir = @opendir($datapath)) {
+            while (($file = readdir($dir)) !== false) {
+                // Nur .txt dateien
+                if (!preg_match("/.*\.txt/", $file))
+                    continue;
+
+                // Nope. den gibt es noch nicht.
+                if ($file == "scheduler.txt")
+                    continue;
+
+                $content = file($datapath.$file);
+                echo "<li><a href='".$PHP_SELF."?mode=show&file=".urlencode($file)."'>".htmlentities($content[0]).'</a>';
+            }  
+            closedir($dir);
+        }        
+        echo "</ul>";
+        break;
+    case "show":
+        $file = basename($file);
+
+        if (!file_exists($datapath.$file)) {
+            echo "Datei $datapath$file exisitert nicht";
+            break;
+        }
+
+        $content = file($datapath.$file);
+        
+        echo "<h1>".$content[0]."</h1>";
+        echo "<pre>";
+        foreach($content as $line) {
+            echo $line;
+        }
+        echo "</pre>";
+
+        break;
+    default:
+        break;
+}
+?>
+</body>
+</html>
