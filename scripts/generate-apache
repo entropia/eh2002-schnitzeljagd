@@ -39,7 +39,6 @@ for loc in polizei spert; do
 
     read IP < config/$loc/ip
     read PORT < config/$loc/www/port
-    PORT=8888
     read ADMINEMAIL < config/$loc/www/adminemail
 
     echo "Listen $IP:$PORT"
