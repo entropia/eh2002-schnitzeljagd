@@ -1,0 +1,14 @@
+#!/bin/sh 
+case "$1" in
+  start)
+    echo "starting diary..."
+    ./diary.pl `cat config/spert/ip` `cat config/spert/diary/port` &
+    ;;
+  stop)
+    echo "beende diary..."
+    killall diary.pl
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac

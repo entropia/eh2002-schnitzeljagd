@@ -5,7 +5,6 @@ use IO::Socket;
 use POSIX qw(:sys_wait_h);
 use MIME::Base64;
 
-my $diary_port = 2323;
 my $diary_exp = 100000000;
 my $client;
 
@@ -150,11 +149,17 @@ sub diary {
 
 $SIG{CHLD} = \&REAPER;
 
-my $server = IO::Socket::INET->new(LocalPort => $diary_port,
+if (@ARGV != 2) {
+    print "diary.pl <bindaddr> <port>\n";
+    exit 1;
+}
+
+my $server = IO::Socket::INET->new(LocalAddr => $ARGV[0],
+                                   LocalPort => $ARGV[1],
                                    Type      => SOCK_STREAM,
                                    Reuse     => 1,
                                    Listen    => 255)
-or die "Couldn't be a tcp server on port $diary_port : $@\n";
+or die "Couldn't be a tcp server: $@\n";
 
 while ($client = $server->accept()) {
    my $pid;

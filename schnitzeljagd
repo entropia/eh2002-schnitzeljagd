@@ -3,8 +3,10 @@ case "$1" in
     start)
         ./init/network start
         ./init/httpd start 
+        ./init/diary start 
         ;;
     stop)
+        ./init/diary stop
         ./init/httpd stop
         ./init/network stop 
         ;;

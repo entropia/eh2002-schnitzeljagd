@@ -1,12 +1,15 @@
 #!/bin/sh
 BASE="`cat config/base`"
+# XXX 
 HTTPD=${BASE}/bin/httpd
 
 case "$1" in
   start)
+    echo "Starte httpd..."
     $HTTPD -f ${BASE}/httpd.conf
     ;;
   stop)
+    echo "Beende httpd..."
     killall httpd
     ;;
   *)
