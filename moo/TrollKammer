@@ -1,0 +1,13 @@
+k4
+
+@describe here as "Die Waende dieser Kammer sind mit rosaner Seide ueberzogen, und es gibt ueberall kleine Altare. Ueber jedem Altar steht ein Gebetsspruch an den Rosa Troll der Finsternis: \"Oh komme ueber uns, Du Flamende Gottheit!\", \"Nimm mich in dein Killfile, du Meister des Usenets!\", \"Jeden Tag score ich dich hoeher, Meister!\". Es riecht nach Zimt, Oel und verdorbener Pizza."
+
+@create $thing named Gebetsbuch,buch
+@describe buch as "In diesem Buch werden verschieden Rituale zu der Beschwoerung des Rosa Trolls der Finsternis beschrieben. So steht zum Beispiel, das waehrend der Easterhegg in Duesseldorf ein Netzexperte zusammen mit 5 jungfrauelichen Prozessen, die noch nie einen write(2) gemacht haben, auf dem IRCaltar geopfert werden muss."
+@drop buch
+
+@create $thing called Gefaengnisplan,plan
+@describe plan as "Auf dem Gefaengnisplan koennt ihr sehen, dass es am Ende des Kellergangs einen geheimen Gang gibt (go geheim). Es steht auch was von \"Magie! Stunnel! Kryptierung!\" dort geschrieben, aber das macht irgendwie keinen Sinn!"
+@drop plan
+
+gang

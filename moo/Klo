@@ -1,0 +1,15 @@
+# von Gang aus
+@dig norden3,n3|sueden,s to Gefaengnisklo
+n3
+
+@describe here as "Ein kleines stinkiges Klo. Das Wasser ist verschimmelt, und an den Waenden haengen lauter Fotos von unixsex.com. Von der Decke haengt ein loses Ethernetkabel. Nach Sueden geht es zum Gang (go sueden)."
+
+@create $container called "System Manager's Newspaper",zeitschrift,zeitung
+@describe zeitung as "Meine Lieblingszeitschrift! So geil, und so unterhaltsam. Mit woechentlichem Sysadminporn und andere Foltergeschichten. Hier wird zum Beispiel berichtet, wie man mit Token Ring Orgasmus bei Eidechsen bewirken kann. Zwischen den Seiten findest du einen Brief."
+
+@create $thing called Brief,zettel
+@describe zettel as "Ich bin hier im Gefaengnis der Scheduler gefangen. Bitte rettet mich. Sie wollen mich bei einer kryptierten schwarzen Messe dem heiligen Scheduler opfern! Den Tunneleingang findet ihr im Keller!"
+put zettel into zeitung
+
+drop zeitung
+
