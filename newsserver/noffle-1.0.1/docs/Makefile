@@ -18,7 +18,7 @@ SHELL = /bin/sh
 srcdir = .
 top_srcdir = ..
 
-prefix = /tmp/noffle
+prefix = /schnitzeljagd/run/noffle
 exec_prefix = ${prefix}
 
 bindir = ${exec_prefix}/bin
@@ -60,12 +60,12 @@ NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
 CC = gcc
-CONFIGFILE = /tmp/noffle/etc/noffle.conf
-DOCDIR = /tmp/noffle/doc/noffle
-MAKEINFO = /home/dividuum/progs/cvs/schnitzeljagd/newsserver/noffle-1.0.1/missing makeinfo
+CONFIGFILE = /schnitzeljagd/run/noffle/etc/noffle.conf
+DOCDIR = /schnitzeljagd/run/noffle/doc/noffle
+MAKEINFO = makeinfo
 PACKAGE = noffle
 SENDMAILPROG = /usr/sbin/sendmail
-SPOOLDIR = /tmp/noffle/spool/noffle
+SPOOLDIR = /schnitzeljagd/run/noffle/spool/noffle
 VERSION = 1.0.1
 
 man_MANS = $(PACKAGE).1 $(PACKAGE).conf.5

@@ -6,10 +6,10 @@
 #define CONFIG_H    /* To stop multiple inclusions. */
 
 /* The NOFFLE config-file */
-#define CONFIGFILE "/tmp/noffle/etc/noffle.conf"
+#define CONFIGFILE "/schnitzeljagd/run/noffle/etc/noffle.conf"
 
 /* The default NOFFLE spool-directory */
-#define SPOOLDIR "/tmp/noffle/spool/noffle"
+#define SPOOLDIR "/schnitzeljagd/run/noffle/spool/noffle"
 
 /* Enable GNU extensions. */
 #define _GNU_SOURCE 1
@@ -36,7 +36,7 @@
 #define HAVE_FDOPEN 1
 
 /* Define if your system has a working `fnmatch' function. */
-/* #undef HAVE_FNMATCH */
+#define HAVE_FNMATCH 1
 
 /* Define if you have the <fnmatch.h> header file. */
 #define HAVE_FNMATCH_H 1
