@@ -26,6 +26,7 @@ case "$1" in
         init/polsys start 
         init/p2p start 
         init/uml start 
+        init/newsserver start 
         echo "$0 umlstart als root nicht vergessen"
         ;;
     stop)
@@ -34,6 +35,7 @@ case "$1" in
         init/polsys stop
         init/p2p stop
         init/uml stop
+        init/newsserver stop
         echo "$0 umlstop als root nicht vergessen"
         ;;
     *)
