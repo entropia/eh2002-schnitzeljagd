@@ -26,6 +26,10 @@ echo '<FilesMatch "^\.">'
 echo '  Order allow,deny'
 echo '  Deny from all'
 echo '</FilesMatch>'
+echo '<FilesMatch "CVS">'
+echo '  Order allow,deny'
+echo '  Deny from all'
+echo '</FilesMatch>'
 
 for loc in polizei spert; do
     echo "# $loc"
