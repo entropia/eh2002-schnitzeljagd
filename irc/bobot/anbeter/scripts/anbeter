@@ -1,4 +1,4 @@
 (bot-addhook hooks/public ".*" 
    (lambda (f t p) 
-      (if (string=? f "guru") (bot-say t p))))
+      (if (string=? f "guru") (bot-say t (string-append "\"" p "\""))))
 
