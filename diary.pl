@@ -10,7 +10,7 @@ my $client;
 
 # XXX
 my ($client_authenticated,
-    $client_challenge) = (1, int(rand $diary_exp));
+    $client_challenge) = (0, int(rand $diary_exp));
 my $i = 1;
 my (@diary_titles, @diary_msgs);
 
