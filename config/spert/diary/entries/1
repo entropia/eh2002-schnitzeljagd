@@ -1,4 +1,16 @@
 Dichtkunst entdeckt
-Habe Dichtkunst der Scheduler entdeckt. Es scheint sich um eine
-merkwürdige Sekte im Dienste eines dubiosen Obergurus zu handeln.
-Werde morgen weiter nachforschen.
+Wie ihr alle wisst, bin ich gerade dabei einen Bericht über die
+bisher relativ unbekannt Schedulersekte zu schreiben.
+
+Bei meinen Nachforschungen bin ich heute auf Dichtkunst der 
+Scheduler gestossen:
+
+---------
+Oh du heiliger Scheduler
+Ich weiss, dass meine Timeslice zuende ist
+Ich hoffe aber, dass ich eines Tages neugeforkt werde,
+Drum befreie mich von meinen mallocs.
+---------
+
+Es scheint eine Arte Oberguru zu exisiteren. Ich werde in den 
+nächsten Tagen versuchen genaueres rauszubekommen.

@@ -75,7 +75,7 @@ for loc in polizei spert; do
                 echo "  # user:$USERNAME/pass:$PASSWORD in $FILE"
                 $HTPASSWD -bn $USERNAME $PASSWORD > $FILE 
 
-                echo "  <Directory $DIR>"
+                echo "  <Directory ${BASE}${DIR}>"
                 echo "    AuthType Basic"
                 echo '    AuthName "Restricted Directory"'
                 echo "    AuthUserFile \"$FILE\""

@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Willkommen bei ihrer Polizei</title>
+<title>Willkommen bei Ihrer freundlichen Polizei</title>
 </head>
 <body bgcolor="#ffffff">
 <table width="100%" height="80%">
@@ -11,7 +11,7 @@ Aktuelles:<br>
 Wir bitten um Hinweise zum Verschwinden von "tomas spert". <br>
 Sachdienliche Hinweise werden unter 
 <i>tel/net <? echo getvar("config/polizei/ip"); ?></i>
-von Port<br>
+von Herrn<br>
 <i><? echo getvar("config/polizei/polsys/portname"); ?></i> entgegengenommen.
 </td></tr>
 </table>

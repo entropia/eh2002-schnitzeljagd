@@ -36,7 +36,7 @@ int handleclient(int fd) {
     while((len = read(fd, inptr, 1000000)) > 0) { 
         in[len]=0;
         
-        // Zu lange Befehle anfangen
+        // Zu lange Befehle abfangen
         if (len > sizeof(in)) {  
             char *warn = "> Befehl zu lang\n";
             write(fd, warn, strlen(warn));

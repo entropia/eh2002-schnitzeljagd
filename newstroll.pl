@@ -48,6 +48,7 @@ $c->post("Subject: ".$trolltopic[rand @trolltopic],
          "Newsgroups: de.org.troll",
          "",
          muell);
+print "Trolle mit neuer Nachricht\n";
 
 for (my $cur = $first; $cur <= $last; $cur++) {
 
