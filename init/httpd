@@ -1,5 +1,5 @@
 #!/bin/sh
-BASE="`cat config/base`"
+read BASE < config/base
 HTTPD=${BASE}/bin/httpd
 
 case "$1" in

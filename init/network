@@ -3,12 +3,15 @@ LOC="polizei prison sekte spert"
 case "$1" in
   start)
     for loc in $LOC; do
-        ifconfig `cat ./config/${loc}/device` `cat ./config/${loc}/ip` up
+        read device < config/${loc}/device
+        read ip     < config/${loc}/ip
+        ifconfig $device $ip up
     done
     ;;
   stop)
     for loc in $LOC; do
-        ifconfig `cat ./config/${loc}/device` down
+        read device < config/${loc}/device
+        ifconfig $device down
     done
     ;;
   *)

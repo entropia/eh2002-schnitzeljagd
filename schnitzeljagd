@@ -5,24 +5,30 @@ case "$1" in
             echo "nur als root"
             exit 1
         fi
-        ./init/network start
+        init/network start
         ;;
     nstop)
         if [ $UID -ne 0 ]; then
             echo "nur als root"
             exit 1
         fi
-        ./init/network stop 
+        init/network stop 
         ;;
     start)
-        ./init/httpd start 
-        ./init/diary start 
-        ./init/polsys start 
+        init/httpd start 
+        init/diary start 
+        init/polsys start 
+        init/p2p start 
+        init/uml-redir start 
+        init/uml start 
         ;;
     stop)
-        ./init/httpd stop
-        ./init/diary stop
-        ./init/polsys stop
+        init/httpd stop
+        init/diary stop
+        init/polsys stop
+        init/p2p stop
+        init/uml-redir stop 
+        init/uml stop
         ;;
     *)
         echo "$0 {nstart|nstop|start|stop}"

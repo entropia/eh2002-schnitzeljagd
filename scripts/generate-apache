@@ -1,5 +1,5 @@
 #!/bin/sh
-BASE="`cat config/base`"
+read BASE < config/base
 HTPASSWD=${BASE}bin/htpasswd
 
 echo "User nobody"
@@ -34,10 +34,10 @@ echo '</FilesMatch>'
 for loc in polizei spert; do
     echo "# $loc"
 
-    IP="`cat config/$loc/ip`"
-    #PORT="`cat config/$loc/www/port`"
+    read IP < config/$loc/ip
+    read PORT < config/$loc/www/port
     PORT=8888
-    ADMINEMAIL="`cat config/$loc/www/adminemail`"
+    read ADMINEMAIL < config/$loc/www/adminemail
 
     echo "Listen $IP:$PORT"
     echo "<VirtualHost $IP:$PORT>"
@@ -60,13 +60,14 @@ for loc in polizei spert; do
         USER=`echo $dir| sed -e "s%-root\$%-user%"`
         PASS=`echo $dir| sed -e "s%-root\$%-pass%"`
         if [ -f $USER -a -f $PASS ]; then
-            DIR="${BASE}config/$loc/www/root`cat $dir`"
+            read WWWPATH < $dir
+            DIR="config/$loc/www/root$WWWPATH"
             echo "  # Passwortschutz für $DIR"
             if [ ! -d "$DIR" ]; then
                 echo "  # XXXXXXX ACHTUNG: Verzeichnis exisitert nicht :-( XXXXXXXX"
             else
-                USERNAME=`cat $USER`
-                PASSWORD=`cat $PASS`
+                read USERNAME < $USER
+                read PASSWORD < $PASS
                 FILE="$DIR.htpasswd"
                 echo "  # user:$USERNAME/pass:$PASSWORD in $FILE"
                 $HTPASSWD -bn $USERNAME $PASSWORD > $FILE 

@@ -13,6 +13,8 @@ sub REAPER {
 }
 
 sub cout {
+   # You can effect a sleep of 50 milliseconds this way:
+   select(undef, undef, undef, 0.2);
    $client->send((shift));
 }
 
@@ -41,6 +43,12 @@ sub drinmsg {
    auf das neue Polizeisystem umgestellt.
    Mit dem alten System ist nur noch beschränkter
    Zugriff auf Informationen möglich.
+
+   Das Neue System befindet sich auf:
+   telnet://${ARGV[0]}:55988/
+
+   Sourcecode befindet sich auf:
+   http://${ARGV[0]}:8888/dev/
    --------------------------------------
 
 EOT
@@ -82,8 +90,6 @@ sub readentries {
    print "foo\n";
    
    foreach my $eintrag (@hinweise) {
-      # You can effect a sleep of 250 milliseconds this way:
-      select(undef, undef, undef, 0.1);
       cout(" - ".$eintrag."\n");
    }
 }

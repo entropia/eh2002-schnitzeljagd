@@ -1,11 +1,13 @@
 #!/bin/sh 
 case "$1" in
   start)
-    echo "starting diary..."
-    ./diary.pl `cat config/spert/ip` `cat config/spert/diary/port` &
+    echo "Starte diary..."
+    read addr < config/spert/ip
+    read port < config/spert/diary/port
+    ./diary.pl $addr $port &
     ;;
   stop)
-    echo "beende diary..."
+    echo "Beende diary..."
     killall diary.pl
     ;;
   *)
