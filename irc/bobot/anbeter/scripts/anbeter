@@ -2,3 +2,8 @@
    (lambda (f t p) 
       (if (string=? f "guru") (bot-say t (string-append "\"" p "\"")))))
 
+(bot-addhook hooks/leave ".*" 
+   (lambda (f t p) 
+      (bot-say t "Danke! Du hast mich befreit! Bitte melde dich bei den
+Entwicklern, das Spiel ist zu ende!")))
+
