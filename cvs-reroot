@@ -1,0 +1,5 @@
+#!/bin/sh
+TMPFILE=/tmp/ROOT$$
+echo $1 > $TMPFILE 
+find . -name "Root" -exec cp $TMPFILE \{\} \;
+rm $TMPFILE
