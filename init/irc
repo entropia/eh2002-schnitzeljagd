@@ -7,9 +7,13 @@ case "$1" in
     read ip < config/sekte/ip
     ipchains -A input -d ! $ip 6667 -p tcp -j REJECT
     su irc -c /usr/sbin/ircd
+    sleep 5
+    /schnitzeljagd/irc/bobot/guru.sh
+    /schnitzeljagd/irc/bobot/anbeter.sh
     ;;
   stop)
     echo "Beende ircd..."
+    killall bobot++
     killall ircd
     read ip < config/sekte/ip
     ipchains -D input -d ! $ip 6667 -p tcp -j REJECT

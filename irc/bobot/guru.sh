@@ -1,4 +1,4 @@
 #!/bin/sh
 
-cd guru && bobot++ -D
+cd guru && bobot++
 cd ..
