@@ -21,15 +21,12 @@ sub cout {
 sub gpf {
    cout <<EOT;
 
-  POLIZEI.EXE caused a fatal exception
+  POLIZEI.EXE caused a fatal exception. 
   0E at memory address: 645A:74C9.
-  All unsaved work will be lost.
 
-  The Crash Wizard will now guide you 
-  through the rest of the rebooting process.
+  Possible reasons: Overflow, Underflow.
 
-  -> Click here to return to the Classic
-  Blue Screen Of Death error message.
+  I will now try to recover.
 
 EOT
 }
@@ -48,7 +45,8 @@ sub drinmsg {
    telnet://${ARGV[0]}:55988/
 
    Sourcecode befindet sich auf:
-   http://${ARGV[0]}:8888/dev/
+   http://${ARGV[0]}/dev/
+
    --------------------------------------
 
 EOT
@@ -113,7 +111,7 @@ sub handlepasswd ($) {
 
 my %config = (
    "start" => {
-      "output" => { "text" => "Willkommen auf dem Polizeisystem [version 0.1]\n\n"},
+      "output" => { "text" => "Willkommen auf dem Polizeisystem [version 0.1/nicht buggeprüft]\n\n"},
       "next"   => "main"},
    "main" => {
       "output" => { "text" => "Hauptmenü\n".

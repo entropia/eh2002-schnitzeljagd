@@ -4,7 +4,7 @@ use Text::Format;
 use Date::Parse;
 use strict;
 
-my $c = new News::NNTPClient("localhost", 1119);
+my $c = new News::NNTPClient("172.16.2.72", 1119);
 
 open(TROLL, $ARGV[0]) or die("kann $ARGV[0] nicht finden");
 my (@getrolle, @trolltopic);
