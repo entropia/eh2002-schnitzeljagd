@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+case "$1" in
+  start)
+    echo "Starte ircd..."
+    read ip < config/sekte/ip
+    ipchains -A input -d !$ip 6667 -p tcp -j REJECT
+    su irc -c /usr/sbin/ircd
+    ;;
+  stop)
+    echo "Beende ircd..."
+    killall ircd
+    ;;
+  *)
+    echo "$0 {start|stop}"
+    ;;
+esac
