@@ -1,0 +1,357 @@
+.TH noffle 1
+.\" $Id: noffle.1,v 1.1 2002-03-28 17:41:24 dividuum Exp $
+.SH NAME
+noffle \- Usenet package optimized for dialup connections.
+
+.SH SYNOPSIS
+
+.B noffle
+\-a | \-\-article <message id>|all
+.br
+.B noffle
+\-c | \-\-cancel <message id>
+.br
+.B noffle
+\-C | \-\-create <local newsgroup name>
+.br
+.B noffle
+\-d | \-\-database
+.br
+.B noffle
+\-D | \-\-delete <newsgroup name>
+.br
+.B noffle
+\-e | \-\-expire
+.br
+.B noffle
+\-f | \-\-fetch
+.br
+.B noffle
+\-g | \-\-groups
+.br
+.B noffle
+\-h | \-\-help
+.br
+.B noffle
+\-l | \-\-list
+.br
+.B noffle
+\-m | \-\-modify desc <newsgroup name> <group description>
+.br
+.B noffle
+\-m | \-\-modify post <local newsgroup name> (y|n)
+.br
+.B noffle
+\-n | \-\-online
+.br
+.B noffle
+\-o | \-\-offline
+.br
+.B noffle
+\-q | \-\-query groups|desc
+.br
+.B noffle
+\-R | \-\-requested
+.br
+.B noffle
+\-r | \-\-server
+.br
+.B noffle
+\-s | \-\-subscribe-over <group>
+.br
+.B noffle
+\-S | \-\-subscribe-full <group>
+.br
+.B noffle
+\-t | \-\-subscribe-thread <group>
+.br
+.B noffle
+\-u | \-\-unsubscribe <group>
+
+.SH DESCRIPTION
+
+.B NOFFLE
+is an Usenet package optimized for low speed dialup Internet connections
+and few users.
+The
+.B noffle
+program is used for running and steering of the proxy news server,
+for retrieving new articles from the remote server and for
+expiring old articles from the database.
+.B NOFFLE
+can fetch newsgroups in one of the following modes:
+.TP
+.B full
+fetch full articles,
+.TP
+.B over
+fetch only article overviews by default. Opening an article marks it
+for download next time online,
+.TP
+.B thread
+like
+.B over,
+but download articles full if an article of the same thread already has
+been downloaded.
+
+.PP
+.B NOFFLE
+also offers limited support for local news groups. Articles
+posted to these appear in full in the database for the local group(s)
+immediately. They are expired in the usual way.
+.PP
+If an article is cross-posted to a local group and a remote group, it
+appears in the local group immediately and in the remote group after
+the next fetch from the remove server.
+.PP
+Note that
+.B NOFFLE
+cannot exchange the contents of local groups with other news servers.
+
+.SH OPTIONS
+
+.TP
+.B \-a, \-\-article <message id>|all
+Write article <message id> to standard output. Message Id must contain
+the leading '<' and trailing '>' (quote the argument to avoid shell
+interpretation of '<' and '>').
+.br
+If "all" is given as message Id, all articles are shown. 
+
+.TP
+.B \-c, \-\-cancel <message id>
+Cancel the article from the database and remove it from the queue of
+outbound messages if it has not already been sent. Message Id must
+contain the leading '<' and trailing '>' (quote the argument to avoid
+shell interpretation of '<' and '>').
+
+.TP
+.B \-C, \-\-create <local newsgroup name>
+Create a new local newsgroup with the given name. The name should
+conform to the usual newsgroup naming rules to avoid confusing
+newsreaders.
+
+.TP
+.B \-d, \-\-database
+Write the complete content of the article database to standard output.
+
+.TP
+.B \-D, \-\-delete <newsgroup name>
+Delete the newsgroup with the given name. All articles that only
+belong to the group are deleted as well.
+
+.TP
+.B \-e, \-\-expire
+Delete all articles that have not been accessed recently from the
+database.
+Should be run regularily from
+.BR crond (8).
+.br
+The default expire period is 14 days. This can be changed and
+custom expiry periods set for individual newsgroups or sets of
+newsgroups in
+.B /etc/noffle.conf.
+
+.TP
+.B \-f, \-\-fetch
+Get new newsfeed from the remote server.
+Updates the list of the existing newsgroups,
+fetches new articles overviews or full articles from subscribed
+groups (see
+.B fetchlist
+),
+delivers all posted articles to the remote server,
+and retrieves all articles marked for download.
+.B noffle --fetch
+should be run in the
+.B ip-up
+script of
+.BR pppd (8).
+
+.TP
+.B \-g, \-\-groups
+List all groups available at remote server.
+.br
+Format (fields separated by tabs):
+.br
+<name> <server> <first> <last> <remote next> <post allowed> <created> <last access> <desc>
+
+.TP
+.B \-h, \-\-help
+Print a list of all options.
+
+.TP
+.B \-l, \-\-list
+List all groups that are presently to be fetched and their fetch mode.
+.br
+Format: <groupname> <server> full|thread|over
+
+.TP
+.B \-m | \-\-modify desc <newsgroup name> <group description>
+Modify the description of the named newsgroup.
+
+.TP
+.B \-m | \-\-modify post <local newsgroup name> <permission>
+Modify the posting permission on a local newsgroup. <permission> must
+be either 'y' (yes, posting allowed), 'm' (moderated, posting allowed
+only if article has 'Approved:' header) or 'n' (no, posting not allowed).
+Attempts to post to a newsgroup with posting disallowed will be rejected.
+
+.TP
+.B \-n, \-\-online
+Put
+.B NOFFLE
+to online status. Requested articles or overviews of selected
+groups are immediately fetched from the remote server. Groups are
+not automatically subscribed to while in online mode, making online
+mode ideal for tasting the content of unfamiliar groups without
+subscribing to them.
+Should be run in the
+.B ip-up
+script of
+.BR pppd (8).
+
+.TP
+.B \-o, \-\-offline
+Put
+.B NOFFLE
+to offline status. Requested articles not already in the
+database are marked for download.
+Should be run in the
+.B ip-down
+script of
+.BR pppd (8).
+
+.TP
+.B \-q, \-\-query groups|desc
+Query information about all groups from the remote server and merge it to
+the
+.B groupinfo
+file. This must be run after installing 
+.B noffle
+or sometimes after a change of the remote news server or corruption
+of the file. It can take some time on slow connections.
+.B groups
+retrieves the list of the existing newsgroups
+(resets all local article counters),
+.B desc
+retrieves all newsgroup descriptions,
+
+.TP
+.B \-r, \-\-server
+Run as NNTP server on standard input and standard output. This is
+intended to be called by
+.BR inetd (8)
+and should be registered in
+.B /etc/inetd.conf.
+Error and logging messages are put to the
+.BR syslogd (8)
+daemon which is usually configured to write them to
+.B /var/log/news.
+A list of the NNTP commands that are understood by
+.B noffle
+can be retrieved by running the server and typing
+.B HELP.
+
+.TP
+.B \-R, \-\-requested
+List articles that are marked for download.
+
+Format: <message-id> <server>
+
+.TP
+.B \-s, \-\-subscribe-over <group>
+Add group with name <group> to list of groups that are presently to be fetched
+(in over mode).
+
+.TP
+.B \-S, \-\-subscribe-full <group>
+Add group with name <group> to list of groups that are presently to be fetched
+(in full mode).
+
+.TP
+.B \-t, \-\-subscribe-thread <group>
+Add group with name <group> to list of groups that are presently to be fetched
+(in thread mode).
+
+.TP
+.B \-u, \-\-unsubscribe <group>
+Remove group with name <group> from list of groups that are presently to
+be fetched.
+
+.SH FILES
+
+.B NOFFLE
+takes its configuration from a configuration file, by default
+.I /etc/noffle.conf.
+For a description of this file, see
+.BR noffle.conf(5).
+
+.B NOFFLE
+keeps all its data files in a spool directory.
+.I /var/spool/noffle
+is the default location.
+
+.TP
+.B <spool dir>/fetchlist
+List of newsgroups that are presently to be fetched.
+.br
+
+.TP
+.B <spool dir>/data/groupinfo.gdbm
+Database with groups in
+.BR gdbm(3)
+format.
+
+.TP
+.B <spool dir>/data/articles.gdbm
+Database with articles in
+.BR gdbm(3)
+format.
+
+.TP
+.B <spool dir>/lock/
+Lock files and files indicating online/offline status.
+
+.TP
+.B <spool dir>/outgoing/
+Posted articles to be delivered to the remote server.
+
+.TP
+.B <spool dir>/overview/
+Text file per group with article overviews.
+
+.TP
+.B <spool dir>/requested/
+Message IDs of articles marked for download.
+
+
+.SH SEE ALSO
+
+.BR noffle.conf (5),
+.BR crond (8),
+.BR inetd (8),
+.BR pppd (8)
+.br
+.B RFC 977,
+.B RFC 1036,
+.br
+.B IETF drafts on common NNTP extensions:
+.br
+.B http://www.karlsruhe.org/
+.br
+.B NOFFLE home page:
+.br
+.B http://home.t-online.de/home/markus.enzenberger/noffle.html
+
+.SH AUTHORS
+
+Markus Enzenberger <markus.enzenberger@t-online.de>
+.br
+Volker Wysk <volker.wysk@student.uni-tuebingen.de>
+.br
+Jim Hague <jim.hague@acm.org>
+.br
+Uwe Hermann <uh1763@bingo-ev.de>
+
+1998-2000.

@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+NOFFLE FAQ
+-------------------------------------------------------------------------------
+
+Q: What is the difference between NOFFLE and leafnode?
+
+A: NOFFLE uses less resources (disk space and bandwidth). Downloading groups
+   in overview mode is several times faster, because it uses the XOVER command
+   instead of HEAD. In addition, there is the quasi-transparent mode, when
+   online, which allows to browse through groups and cache everything without
+   subscribing. NOFFLE is GPLed, leafnode isn't.
+
+-------------------------------------------------------------------------------
+
+Q: I subscribe to groups, but get a "Retreiving failed" message for every
+   requested article.
+
+A: Some news server do not allow retrieving articles by message-ID. You cannot
+   use NOFFLE together with these servers presently.
+
+-------------------------------------------------------------------------------
+
+Q: I changed the server in the config files, but the new groups do not appear.
+
+A: You should run 'noffle --query groups' again. If you want all old group
+   information deleted, you should remove the file data/groupinfo.gdbm in the
+   spool directory before.
+
+-------------------------------------------------------------------------------
+
+Q: The Emacs news reader GNUS hangs while getting active list from server.
+
+A: This is a known phenomena and I believe that it is a bug with GNUS, because
+   the log files show correct handling of client commands by noffle.
+

@@ -1,0 +1,115 @@
+-------------------------------------------------------------------------------
+NOFFLE Internals
+-------------------------------------------------------------------------------
+
+This document is, for the moment, a collection of jottings on aspects
+of Noffle internals.One day it might make it into something resembling
+documentation, but I wouldn't put your money on it. Use the Source,
+Luke!
+
+1. Where do things get stored?
+
+Articles: Articles are held keyed by Message-ID in the articles
+database, articles.gdbm. This is handled by database.[hc]. Articles
+are marked with a status, indicating if they were only partially
+downloaded (think overview mode) or if something went wrong on
+retrieval.
+
+Groups: The list of groups known is held in the groups database,
+groupinfo.gdbm, keyed on group name. This holds the group first and
+last article numbers, the last article number read on the remote
+server, group creation and last access times, plus the group
+description, the name of the server from which the group is drawn and
+a flag indicating if posting to the group is allowed.
+
+Local groups are indicated as belonging to a special server. They are
+for the most part treated identically to remote groups (though the
+whole business of auto-subscribe and auto-unsubscribe obviously
+doesn't apply, and posting operates locally).
+
+The fetchlist (fetchlist.[hc]) holds the list of group names Noffle
+currently subscribes to, and the subscription mode.
+
+Subscribed groups may have a file with their name in the overview
+directory. This file - the overview file - contains details of the
+articles in the group that can currently be read from the server. Each
+entry in the file is an overview (over.[hc]), while a group overview
+file is handled by content.[hc]. If no articles are left in a group,
+the overview file is deleted.
+
+The Noffle server loads the overview for a group into memory when it
+needs to manipulate the group and uses its reckoning on the first and
+last article number from there on. This may not correspond with the
+first and last number given in the groups database entry. Typically,
+the database first and last entries are updated from the overview on
+completion of actions affecting the group.
+
+Outbound articles are placed in a directory under the Noffle spool
+'outgoing' directory.  Each is in its own file, named by the article
+Message-ID, in a directory with the name of the server. outgoing.[hc]
+handle tracking what outbound messages are queued and queueing new ones.
+When Noffle connects to the appropriate server, the message is posted
+on and the file removed.
+
+2. Posting
+
+Posting to remote groups is straightforward; the article is placed in
+the outgoing queue, and will be read back from the server as part of
+collecting new messages for the group. The article is placed once only
+in the queue, regardless of the number of external groups, as it only
+needs to appear once on the remote server. Articles posted only to
+newsgroups unknown to Noffle are rejected.
+
+If the group is marked as 'can't post' ('n' in LIST ACTIVE) the post
+is rejected immediately. Note you can't have moderated local groups at
+the moment; you can have read-only ones, though.
+
+Control message are similarly passed on, unless the control is
+'cancel' and the cancel can be done entirely locally because the
+article is still in the outgoing queue.
+
+Posts to local groups appear in the article database
+immediately. Control messages (control.[hc]) for local groups are
+honoured, though currently only 'cancel' does anything.
+
+Things get more complex when an article is cross-posted to a local and
+remote group. Essentially, both the above happen; if the remote server
+does not change the Message-ID, the local copy will be the definitive
+for both groups. Obviously if the remote server does change the
+Message-ID, Noffle will tread the article coming back from the server
+as a new one.
+
+post.[hc] holds the code for posting local articles.
+
+The posting code in post 1.0 Noffle should (i.e. I'll do it if time
+permits) be rearranged to provide one function to post (or reject) an
+article regardless of original source. This would hopefully make it
+clearer what happens during a post, and make it easy to add a
+command-line article post function, which could remove the necessity
+for Python or Perl intervention gateing mailing lists into local newsgroups.
+
+3. Pseudo articles
+
+Noffle generates various pseudo articles itself (see pseudo.[hc]), to
+inform the user of changes of state or to give instruction. All but
+one are, in fact, done by generating and posting a regular article,
+but one is special; the general information article.
+
+The gen info article is the one shown when one tries to read from a
+currently unsubscribed (Noffle is not subscribed to it, that it)
+newsgroup. It is apparently present in every single group known to
+Noffle, but is faked; it never appears in the article database. LIST
+ACTIVE fakes the first and last article numbers for a group if it
+knows the group is not subscribed to (and not local), and entry to a
+group with the GROUP command will cause an overview to be added to the
+group overview in memory only. If the article is not read, the
+overview is lost unsaved when moving to the next group.
+
+Reading the article triggers stuff happening. If auto-subscribe is on,
+a pseudo article confirming subcription is posted and the group
+overview saved. Gen info articles are not normally saved in overviews,
+but to prevent them vanishing very suddenly their overview is saved
+with other articles in the group if they form part of the sequence of
+the group. In this case it will persist until the subscription confirm
+article expires. This will not stop another gen info being generated
+if (say) the group gets auto-unsubscribed.

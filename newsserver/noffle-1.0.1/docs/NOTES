@@ -1,0 +1,271 @@
+
+-------------------------------------------------------------------------------
+
+    1. NOFFLE Compatibility Notes
+
+        1.1  General
+        1.2  kexpress
+        1.3  krn
+        1.4  Netscape
+        1.5  pine
+        1.6  slrn
+	1.7  tin
+        1.8  Emacs Gnus
+	1.9  pan
+	1.10 trn
+	1.11 xrn
+	1.12 knews
+	1.13 knode
+        1.14 Gravity
+
+-------------------------------------------------------------------------------
+
+
+1.NOFFLE Compatibility Notes
+----------------------------
+
+
+1.1 General
+-----------
+
+Subscribing to groups in "full" mode should work with any news reader.
+Caching of articles is unnecessary, since NOFFLE already caches them and
+should be switched off.
+
+Subscribing to groups in "overview" or "thread" mode requires more from the
+news reader program:
+
+ * It must not cache articles at all (or allow to switch the cache off),
+   because the article bodies change from the pseudo article
+   "marked for download" to the real body.
+
+ * The reader should rarely open article bodies automatically, because it will
+   mark them unwantedly for download.
+
+
+Here comes a list with news readers that have been tested with NOFFLE,
+especially with regards to subscribing to groups in "overview" or "thread"
+mode.
+
+Please send me reports on your experiences. If a reader does not work at all,
+compile NOFFLE with
+
+ ./configure --enable-debug
+  make
+  make install
+
+Then you will see every NNTP command and status line in /var/log/news. Most
+interesting is the last line, before the reader (or NOFFLE) hangs :-)
+Please also send me a short mail, if you successfully used NOFFLE with a
+certain version of a news reader for a longer time, so that I can keep this
+list up-to-date.
+
+
+1.2 kexpress
+------------
+
+Version 0.2.0;
+
+I found no way to disable caching, apart from writing a wrapper script, which
+removes all files from the cache after terminating kexpress:
+
+#!/bin/bash
+# kexpress wrapper, save as /usr/local/bin/kexpress
+
+/opt/kde/bin/kexpress $@
+rm $HOME/.kde/share/apps/kexpress/data/*
+
+
+1.3 krn
+-------
+
+Version 0.4.0:
+
+Set "Options/NNTP Options/Connect on Startup,Connect without asking"
+and "Options/Expire options/Article bodies/Read=0,UnRead=0" Sometimes
+the article bodies remain in the cache, the following wrapper script helps:
+
+#!/bin/bash
+# krn wrapper, save as /usr/local/bin/krn
+
+/opt/kde/bin/krn $@
+rm $HOME/.kde/share/apps/krn/cache/*
+
+Articles can be marked as read/unread without opening with the middle mouse
+button. This version of krn is still unstable.
+
+
+1.4 Netscape
+-------------
+
+Version 3.04:
+
+No cache problems, netscape caches the article overviews, but not the
+bodies. It is best to use "Options/Show only Unread Messages" and to
+keep requested articles in unread state until their bodies are
+downloaded. For avoiding unwanted opening of articles one should first
+"Message/Mark Newsgroup read", then open the wanted articles one by
+one and mark them as unread again ("Message/Mark as Unread")
+immediately after opening.
+
+
+Version 4.0.5:
+
+Same as with netscape 3.04, but automatically opens the first article
+of a listed group and marks it for download thereby. If this bothers
+you, choose "View/Hide message". This version of netscape still seems
+to be unstable for reading news.
+
+
+Version 4.5:
+
+As with 4.0.5 "View/Show/Message" can be used to switch off automatic
+message display (and marking for download).
+
+
+1.5 pine
+--------
+
+Version 3.96, 4.05:
+
+Ok.
+
+
+1.6 slrn
+--------
+
+Version 0.9.5.2:
+
+Ok. You can change some keybindings, by saving the following script to
+~/.slrn.sl and adding "interpret .slrn.sl" at the end of your
+~/.slrnrc
+
+   % SLRN script for better interplay with NOFFLE news server.
+   % Redefines some keys for opening articles without modifying flags.
+   define my_article_linedn()
+   {
+       variable flags = get_header_flags();
+       call ( "article_linedn" );
+       set_header_flags( flags );
+   }
+   define my_scroll_dn()
+   {
+       variable flags = get_header_flags();
+       call ( "scroll_dn" );
+       set_header_flags( flags );
+   }
+   define my_hide_article()
+   {
+       variable flags = get_header_flags();
+       call ( "hide_article" );
+       set_header_flags( flags );
+   }
+   definekey( "my_article_linedn", "\r", "article" );
+   definekey( "my_scroll_dn", " ", "article" );
+   definekey( "my_hide_article", "h", "article" );
+
+
+1.7 tin
+-------
+
+Version tin pre:
+
+Call with "tin -r" or "rtin". 'K' marks articles/thread as read
+without opening them. '-' marks them as unread.
+
+
+1.8 Emacs Gnus
+--------------
+
+Here is a proposal for changing some key-bindings.
+
+   ;; Customising Gnus for use with the NOFFLE news server
+   ;; 
+   ;;  tick and open article
+   ;;          for reading/marking for download
+   ;;   scroll article text circular
+   ;;          for avoiding automatic opening of next article
+   ;;       mark article as read and go to next line
+   (defun my-gnus-summary-tick-and-open(n)
+     "Tick and open article, so that NOFFLE marks it for download" 
+     (interactive "p")
+     (gnus-summary-scroll-up n)
+     (gnus-summary-mark-article nil gnus-ticked-mark t)
+     )
+   (defun my-gnus-summary-next-page(n)
+     "Next page of article, but do not open next article automatically"
+     (interactive "p")
+     (gnus-summary-next-page 10 t) ;; Call with argument `circular'.
+     )
+   (defun my-gnus-summary-mark-read-next-line(n)
+     "Mark article as read and go to next line"
+     (interactive "p")
+     (gnus-summary-mark-article-as-read gnus-read-mark)
+     (next-line n)
+     )
+   (defun my-gnus-summary-mode-hook ()
+     (define-key gnus-summary-mode-map "\r"
+       'my-gnus-summary-tick-and-open)
+     (define-key gnus-summary-mode-map " "
+       'my-gnus-summary-next-page)
+     (define-key gnus-summary-mode-map "d"
+       'my-gnus-summary-mark-read-next-line)
+     )
+   (add-hook 'gnus-summary-mode-hook 'my-gnus-summary-mode-hook)
+
+
+1.9 pan
+-------
+
+Versions 0.7.6, 0.8.0beta5, 0.8:
+
+Ok.
+
+
+1.10 trn
+--------
+
+Version 3.6:
+
+Ok. Use 'm' to mark an article unread. 'J' (junk) marks an entire thread
+as read without examining the rest of the articles in the thread.
+
+
+1.11 xrn
+--------
+
+Version 9.01:
+
+There does not appear to be away to stop the body of the first unread
+article in the group from being displayed. Otherwise Ok.
+
+
+1.12 knews
+----------
+
+Version 1.0b.0:
+
+knews issues NEWNEWS with a non-compliant 7 digit date field (Y2K bug?).
+It will not see new newsgroups as they appear. knews also regards articles
+existing in a group when it joins as read, which makes it a bit tricky
+reading the subscription trigger message - try the 'All threads' button.
+Apart from that, it does not seem to cache article content other than the
+current article, and that is re-read if you click on it in the thread
+window.
+
+1.13 knode
+----------
+
+Version 0.1.13:
+
+Setting the number of days to cache an article to 0 in Options/Read News
+prevents the article being cached between knode sessions.
+
+1.14 Gravity
+------------
+
+Version 2.3:
+
+As for the overview/thread mode, caching must be disabled in
+View->Global Options->Storage(tab), disable "Retrieve and store article
+bodies" and "Store all bodies retrieved for reading".

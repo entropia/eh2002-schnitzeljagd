@@ -1,0 +1,16 @@
+Begin3
+Title:          NOFFLE - news server 
+Version:	
+Entered-date:   28AUG98
+Description:    NOFFLE is a news server optimized for low speed dialup
+		connections to the Internet and few users.
+		It allows reading news offline with many news reader
+                programs, even if they do not support offline reading
+                by themselves.
+Keywords:       news server, news reader, offline, modem, dialup
+Author:		Markus Enzenberger <markus.enzenberger@t-online.de>
+Maintained-by:  Markus Enzenberger <markus.enzenberger@t-online.de>
+Primary-site:   http://home.t-online.de/home/markus.enzenberger/noffle.html
+Platforms:      UNIX, GNU/Linux
+Copying-policy: GPL
+End
