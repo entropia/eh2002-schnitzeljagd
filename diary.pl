@@ -29,16 +29,22 @@ while (open(MSG, "./config/spert/diary/entries/$i")) {
 }
 
 sub REAPER {
-   1 until (-1 == waitpid(-1, WNOHANG));
+   1 until ( -1 == waitpid(-1, WNOHANG));
    $SIG{CHLD} = \&REAPER;                 # unless $] >= 5.002
 }
 
 sub ack {
-   $client->send("ACK: ".(shift)."\n");
+   if (!defined($client->send("ACK: ".(shift)."\n"))) {
+   $client->shutdown(2);
+      exit;
+   }
 }
 
 sub nack {
-   $client->send("NACK: ".(shift)."\n");
+   if (!defined($client->send("NACK: ".(shift)."\n"))) {
+   $client->shutdown(2);
+      exit;
+   }
 }
 
 sub diary_banner {
@@ -70,6 +76,7 @@ sub diary_response {
       ack("RESPONSE $str");
       $client_authenticated = 1;
    }
+   $client_challenge = rand $diary_exp;
 }
 
 sub diary_list {
@@ -128,7 +135,12 @@ sub diary {
 
    diary_banner();
 
-   while (defined($client->recv($str, 512))) {
+   while (defined(my $test = $client->recv($str, 512))) {
+      print "blorg\n";
+      if (length($str) == 0) {
+         $client->shutdown(2);
+         exit;
+      }
       chomp($str);
       my ($cmd, @args) = split /\s+/, $str;
       
@@ -140,7 +152,10 @@ sub diary {
       if (defined($diary_handlers{$cmd})) {
          $diary_handlers{$cmd}->(@args);
       } else {
-         $client->send("NACK PROTOCOL MISMATCH\n");
+         if (!defined($client->send("NACK PROTOCOL MISMATCH\n"))) {
+            $client->shutdown(2);
+            exit;
+         }
       }
    }
 
@@ -169,8 +184,6 @@ while ($client = $server->accept()) {
    next if $pid = fork;                    # parent
    next unless defined $pid;
    diary;
-   $client->close;
+   $client->shutdown(2);
    exit;                                   # child leaves
-} continue {
-   $client->close;
 }
