@@ -37,6 +37,11 @@
             
 (bot-addhook hooks/public "bot-die" guru-krass)
 
+(define (guru-selbstmord f c p)
+   (bot-die "ARG! NEIN! DU WEISST ES!"))
+
+(bot-addhook hooks/public "letzten [sS]ommer" guru-selbstmord)
+
 ; (define bda read)
 ;(define lam eval)
 ;
