@@ -120,6 +120,8 @@ int main(int argc, char *argv[]) {
    char  buf[10000]; 
    char *bufptr;
    FILE *msgfile;   
+   char *password = "Muahaha";
+   int   i;
 
    if (argc != 5) {
       fprintf(stderr, "%s <sourceaddr> <sourceport> <targetaddr> <targetport>\n", argv[0]);
@@ -137,14 +139,20 @@ int main(int argc, char *argv[]) {
       exit(0);
    }
 
+   if (fclose(msgfile) != 0) {
+      perror("fclose");
+      exit(1);
+   }
+
    buf[buflen] = '\0';
 
    for (bufptr = strtok(buf, "\n"); nummessages < MAXMESSAGES && bufptr; bufptr = strtok(NULL, "\n"))
       messages[nummessages++] = bufptr;
 
-   if (fclose(msgfile) != 0) {
-      perror("fclose");
-      exit(1);
+   for (i=0; i < nummessages; i++) {
+       int j;
+       for (j=0; j< strlen(messages[i]) ; j++) 
+           messages[i][j] ^= password[j % strlen(password)];
    }
     
    sport = atoi(argv[2]);
