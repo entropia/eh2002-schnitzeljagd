@@ -1,0 +1,11 @@
+#!/bin/sh
+
+read ip1 < config/spert/ip
+read ip2 < config/prison/ip
+read ip3 < config/polizei/ip
+read ip4 < config/sekte/ip
+
+echo "Schnitzeljagd Status:"
+echo "------------------------------------------------------------------------------------------"
+netstat -anp 2>/dev/null |grep -E "$ip1|$ip2|$ip3|$ip4|192.168.0.1"|sort
+echo "------------------------------------------------------------------------------------------"
