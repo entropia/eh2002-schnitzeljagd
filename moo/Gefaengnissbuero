@@ -1,3 +1,5 @@
+n1
+
 @dig Gefaengnissbuero
 
 @describe here as "Ein oedes Buero, 60er-jahre Stil, mit Bluemchentapete. Es haengen Fotos von McKusik, Thompson und Ritchie an der Wand, darunter der Spruch \"Long lives the eternal Scheduler\" mit Blut geschrieben. Ein paar Regale an der Wand machen das Zimmer zu einem ziemlich duesteren Ort. Auf dem Schreibtisch in der Mitte des Zimmers steht ein uraltes HP 700/RX Terminal, der Bildschirm flackert wacker mit 60 Hz vor sich hin. Nach sueden geht's zum Gang. (go sueden)"
@@ -9,7 +11,8 @@
 @describe terminal as "Auf dem Bildschirm erscheinen unerlaesslich bunte geometrische Formen. Wenn man die Maus bewegt oder die Tastatur benutzt, passiert nichts."
 
 @create $thing called Regal,Regale
-@describe regal "Die Regale sind aus dunklem Holz, und Staub bedeckt. Sonst kann man nichts wichtiges erkennen."
+@describe regal as "Die Regale sind aus dunklem Holz, und Staub bedeckt. Sonst kann man nichts wichtiges erkennen."
 
-@dig osten,o|westen,w to Rechnerraum
+@dig osten,o|westen,w to #103
 
+sueden

@@ -5,9 +5,11 @@ k4
 @create $thing named Gebetsbuch,buch
 @describe buch as "In diesem Buch werden verschieden Rituale zu der Beschwoerung des Rosa Trolls der Finsternis beschrieben. So steht zum Beispiel, das waehrend der Easterhegg in Duesseldorf ein Netzexperte zusammen mit 5 jungfrauelichen Prozessen, die noch nie einen write(2) gemacht haben, auf dem IRCaltar geopfert werden muss."
 drop buch
+@lock buch with me
 
 @create $thing called Gefaengnisplan,plan
 @describe plan as "Auf dem Gefaengnisplan koennt ihr sehen, dass es am Ende des Kellergangs einen geheimen Gang gibt (go geheim). Es steht auch was von \"Magie! Stunnel! Kryptierung!\" dort geschrieben, aber das macht irgendwie keinen Sinn!"
 drop plan
+@lock plan with me
 
 gang

@@ -1,5 +1,4 @@
 # von Gang aus
-@dig norden3,n3|sueden,s to Gefaengnisklo
 n3
 
 @describe here as "Ein kleines stinkiges Klo. Das Wasser ist verschimmelt, und an den Waenden haengen lauter Fotos von unixsex.com. Von der Decke haengt ein loses Ethernetkabel. Nach Sueden geht es zum Gang (go sueden)."
@@ -13,3 +12,6 @@ put zettel into zeitung
 
 drop zeitung
 
+@lock s with !brief
+
+sueden

@@ -1,7 +1,8 @@
-# von Gefaengnisbuero aus
-@dig sueden,s|norden1,n1 to Gefaengnisgang
 
 @describe here as "Ein dunkler Gefaengnisgang. Es stinkt, und ueberall sind ausgerissene Dokuseiten zu sehen. Manchmal hoert man einen herzzerreissenden Schrei aus der Finsternis kommen. Es sind mehrere Tueren (go norden1, norden2, norden3) zu erkennen, und hinten sieht man eine Treppe (go unten)"
 
+@dig norden1,n1|sueden,s to Gefaengnisgang
 @dig norden2,n2|sueden,s to Rechnerraum
+@dig norden3,n3|sueden,s to Gefaengnisklo
+@dig treppe,runter,unten|treppe,hoch,oben to Kellergang
 

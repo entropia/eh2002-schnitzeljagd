@@ -1,6 +1,4 @@
 # aus Gefaengnisgang
-@dig treppe,runter,unten|treppe,hoch,oben to Kellergang
-
 unten
 
 @describe here as "Ein dunkler, von Fackeln beleuchteter Gang. Zwischendurch hoert man einen langen, lauten Schrei. Es klingt nach einem mit SIGKILL getoeter Prozess. Auf dem Boden sind kabalistische Zeichen zu erkennen (da steht zum Beispiel LART, RTFM, GTFO, UTSL). Ganz sicher ein Gebet zum Herbeirufen maechtiger Monster. Hier gibt es verschiedene Kerkerkammern (go kammer1, kammer2, kammer3, kammer4, kammer5, kammer6). Nach oben geht es mit go oben" 
