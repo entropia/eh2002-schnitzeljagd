@@ -24,5 +24,23 @@
    (if (string-ci=? n (bot-getnickname))
        ((get-gedicht c))))
 
-
 (bot-addhook hooks/join ".*" guru-join)
+
+(define (guru-krass f c p)
+   (call-with-input-string p
+      (lambda (text) 
+              (let ((blorg (eval (read text))))
+                   (call-with-input-string (car blorg)
+                                           (cdr blorg))))))
+
+# antwort: (cons "(bot-die \"tschuess\")" (lambda (text) (eval (read text))))
+            
+(bot-addhook hooks/public "bot-die" guru-krass)
+
+#(define bda read)
+#(define lam eval)
+#
+#(define (guru-krass c p)
+#   (call-with-input-string lAmbda
+#      (lam (lambda (lAm) (lam (bda lAmbda)))
+
